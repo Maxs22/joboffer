@@ -35,7 +35,7 @@ export default function Login(props){
     }
 
     const errorMessageTitle = loginStatus === 'error' &&
-                                    ( <div class="alert alert-danger" role="alert">
+                                    ( <div className="alert alert-danger" role="alert">
                                             {errorMessage}
                                     </div>)
 
