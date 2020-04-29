@@ -1,11 +1,13 @@
 import { createStore } from 'redux'
 import { combineReducers } from 'redux'
-import  accountReducer  from './reducers/account/accountReducer'
+import { mainAppReducer }  from '../../src/redux/mainApp/mainAppReducer'
+
 
 const rootReducer = combineReducers({
-    account: accountReducer
+    mainApp: mainAppReducer
 })
 
-const store = createStore(rootReducer);
+//Second parameter activates Redux DevTools
+const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 export default store;

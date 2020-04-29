@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import logo from './job.jpg';
+import { loginRequired, loggedSuccessfully } from '../../redux/mainApp/mainAppActions';
 import './login.css';
 
 export default function Login(props) {
@@ -9,6 +11,7 @@ export default function Login(props) {
     const [loginMessage, setLoginMessage] = useState();
     const [loginStatus, setloginStatus] = useState("initial");
 
+    const dispatch = useDispatch();
 
     const handleUserChange = (event) => {
         setUser(event.target.value);
@@ -27,10 +30,12 @@ export default function Login(props) {
         if (user !== 'a@b.com') {
             setLoginMessage('User or password invalid');
             setloginStatus('error');
+            dispatch(loginRequired);
         }
         else {
             setloginStatus('success');
             setLoginMessage('Login Success');
+            dispatch(loggedSuccessfully);
         }
     }
 
