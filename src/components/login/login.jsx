@@ -1,18 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import logo from './job.jpg';
 import { loginRequired, loggedSuccessfully } from '../../redux/mainApp/mainAppActions';
 import { Container, Row, Col } from 'react-bootstrap';
 import './login.css';
 
-export default function Login(props) {
+export default function Login() {
 
     const [user, setUser] = useState();
     const [password, setPassword] = useState();
     const [loginMessage, setLoginMessage] = useState();
     const [loginStatus, setloginStatus] = useState("initial");
-
-    let loginRequired = useSelector(state => state.loginRequired);
 
     const dispatch = useDispatch();
 
@@ -47,7 +45,7 @@ export default function Login(props) {
             {loginMessage}
         </div>)
 
-    const content = loginRequired && (
+    return (
         <div className="row login-form">
             <Container>
                 <Row>
@@ -69,11 +67,5 @@ export default function Login(props) {
                 </Row>
             </Container>
         </div>
-    )
-
-    return (
-        <span>
-            {content}
-        </span>
     )
 }

@@ -15,6 +15,11 @@ export function mainAppReducer (state = initialState, action) {
             loggedSuccessfully : true,
             loginRequired : false
         }
+        case 'LOGIN_CANCELED': return {
+            ...state,
+            loggedSuccessfully : false,
+            loginRequired : false
+        }
         default: return state
     }
 }

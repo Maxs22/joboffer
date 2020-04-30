@@ -1,26 +1,20 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { Container, Row, Col, Button } from 'react-bootstrap';
-import Login from '../login/login';
-import { loginRequired } from '../../redux/mainApp/mainAppActions';
+import { Container, Row, Col} from 'react-bootstrap';
+import  AccountSmallSize  from '../account/small/AccountSmallSize'
+import './dashboard.css'
 
 
 export default function Dashboard(props) {
 
-    const dispatch = useDispatch();
-
     return (
         <Container fluid>
             <Row>
-                <Col xs="auto">Side bar<Login></Login></Col>
+                <Col className="side-panel" xs="auto">Side bar</Col>
                 <Col>
+                    <AccountSmallSize></AccountSmallSize>
                 </Col>
             </Row>
             <Row>
-                <Col xs="auto"></Col>
-                <Col md={{offset: 4 }}>
-                    <Button variant="info" onClick={()=>dispatch(loginRequired)}>Login</Button>
-                </Col>
             </Row>
         </Container>
     )
