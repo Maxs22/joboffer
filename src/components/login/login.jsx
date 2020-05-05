@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import logo from './job.jpg';
-import { loginRequired, loggedSuccessfully } from '../../redux/mainApp/mainAppActions';
+import { loginRequired, loggedInSuccessfully } from '../../redux/mainApp/mainAppActions';
 import { Container, Row, Col } from 'react-bootstrap';
 import './login.css';
 
@@ -31,12 +31,11 @@ export default function Login() {
         if (user !== 'a@b.com') {
             setLoginMessage('User or password invalid');
             setloginStatus('error');
-            dispatch(loginRequired);
         }
         else {
             setloginStatus('success');
             setLoginMessage('Login Success');
-            dispatch(loggedSuccessfully);
+            dispatch(loggedInSuccessfully);
         }
     }
 

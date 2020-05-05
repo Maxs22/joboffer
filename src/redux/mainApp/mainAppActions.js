@@ -1,12 +1,23 @@
-export const loginRequired =  {
-        type : 'REQUIRE_LOGIN' 
-    }
+export const loginRequired = {
+    type: 'LOGIN_REQUIRED'
+}
 
-export const loginCanceled =  {
-        type : 'LOGIN_CANCELED'
-    }
+export const loggedInSuccessfully = {
+    type: 'LOGGED_IN_SUCCESSFULLY'
+}
 
+export const logoutRequired = {
+    type: 'LOGOUT_REQUIRED'
+}
 
-export const loggedSuccessfully =  {
-        type : 'LOGED_SUCCESSFULLY'
-    }
+export const loggedOutSuccessfully = {
+    type: 'LOGGED_OUT_SUCCESSFULLY'
+}
+
+export const loginCanceled = {
+    type: 'LOGIN_CANCELED'
+}
+
+export const logoutCanceled = {
+    type: 'LOGOUT_CANCELED'
+}

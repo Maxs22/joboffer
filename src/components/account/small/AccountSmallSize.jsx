@@ -1,21 +1,22 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Container, Row, Col, Button, Modal , Image} from 'react-bootstrap';
+import {  Button, Modal } from 'react-bootstrap';
 import Login from '../../login/login';
 import './AccountSmallSize.css'
-import { loginRequired, loginCanceled } from '../../../redux/mainApp/mainAppActions';
+import { loginRequired, loginCanceled, logoutRequired, logoutCanceled, loggedOutSuccessfully } from '../../../redux/mainApp/mainAppActions';
 
 
 export default function AccountSmallSize() {
 
     const dispatch = useDispatch();
-    
-    let showContent = useSelector(state => state.mainApp.loginRequired);
-    let userIsLogged = useSelector(state => state.mainApp.loggedSuccessfully);
 
-    const modal = showContent && (
+    const showLoginModal = useSelector(state => state.mainApp.loginRequired);
+    const userIsLogged = useSelector(state => state.mainApp.loggedInSuccessfully);
+    const showLogoutModal = useSelector(state => state.mainApp.logoutRequired)
 
-        <Modal show={showContent} onHide={()=>dispatch(loginCanceled)}>
+    const loginModal = showLoginModal && (
+
+        <Modal show={showLoginModal} onHide={() => dispatch(loginCanceled)}>
             <Modal.Header closeButton>
                 <Modal.Title>Login</Modal.Title>
             </Modal.Header>
@@ -25,15 +26,35 @@ export default function AccountSmallSize() {
         </Modal>
     )
 
+    const logoutConfirmModal = showLogoutModal && (
+
+        <Modal show={showLogoutModal} onHide={() => dispatch(logoutCanceled)}>
+            <Modal.Header closeButton>
+                <Modal.Title>Log Out</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <p>Please confirm you want to log out</p>
+            </Modal.Body>
+            <Modal.Footer>
+                <Button variant="secondary" onClick={() => dispatch(logoutCanceled)}>
+                    Cancel
+                </Button>
+                <Button variant="primary" onClick={() => dispatch(loggedOutSuccessfully)}>
+                    Confirm
+                </Button>
+            </Modal.Footer>
+        </Modal>
+    )
+
+    const handleClick = (event) => {
+        userIsLogged ? dispatch(logoutRequired) : dispatch(loginRequired);
+    }
 
     return (
-        <Container>
-            <Row>
-                <Col>
-                    <Button variant="link" onClick={() => dispatch(loginRequired)}>{ userIsLogged ? "Logout" : "Login"}</Button>
-                    { modal }
-                </Col>
-            </Row>
-        </Container>
+        <span>
+                    <Button variant="link" onClick={() => handleClick()}>{userIsLogged ? "Logout" : "Login"}</Button>
+                    {loginModal}
+                    {logoutConfirmModal}
+        </span>
     );
 }

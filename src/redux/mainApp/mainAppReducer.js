@@ -1,24 +1,38 @@
 const initialState = {
     loginRequired: false,
-    loggedSuccessfully: false,
+    loggedInSuccessfully: false,
+    logoutRequired: false,
+    loggedOutSuccessfully: false
 }
 
-export function mainAppReducer (state = initialState, action) {
-    switch(action.type){
-        case 'REQUIRE_LOGIN': return{
+export function mainAppReducer(state = initialState, action) {
+    switch (action.type) {
+        case 'LOGIN_REQUIRED': return {
             ...state,
-            loginRequired : true,
-            loggedSuccessfully: false
-            }
-        case 'LOGED_SUCCESSFULLY': return {
+            loginRequired: true
+        }
+        case 'LOGGED_IN_SUCCESSFULLY': return {
             ...state,
-            loggedSuccessfully : true,
-            loginRequired : false
+            loggedInSuccessfully: true,
+            loginRequired: false
+        }
+        case 'LOGOUT_REQUIRED': return {
+            ...state,
+            logoutRequired: true
+        }
+        case 'LOGGED_OUT_SUCCESSFULLY': return {
+            ...state,
+            logoutRequired: false,
+            loggedOutSuccessfully: true,
+            loggedInSuccessfully: false
         }
         case 'LOGIN_CANCELED': return {
             ...state,
-            loggedSuccessfully : false,
-            loginRequired : false
+            loginRequired: false
+        }
+        case 'LOGOUT_CANCELED': return {
+            ...state,
+            logoutRequired: false
         }
         default: return state
     }
