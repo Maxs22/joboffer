@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState }from 'react';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Modal } from 'react-bootstrap';
@@ -12,6 +12,8 @@ export default function MainNavBar() {
   const showLoginModal = useSelector(state => state.mainApp.loginRequired);
   const userIsLogged = useSelector(state => state.mainApp.loggedInSuccessfully);
   const showLogoutModal = useSelector(state => state.mainApp.logoutRequired)
+
+  const [expanded, setExpanded] = useState(false);
 
   const loginModal = showLoginModal && (
 
@@ -45,36 +47,37 @@ export default function MainNavBar() {
     </Modal>
   )
 
-  const anyOpenModalRequired = showLoginModal || showLogoutModal ;
-
   const handleClick = (event) => {
+
+    setExpanded(false);
+
     userIsLogged ? dispatch(logoutRequired) : dispatch(loginRequired);
   }
 
 
   return (
     <span>
-      <Navbar fixed="top" bg="light" expand="lg" collapseOnSelect="true">
+      <Navbar fixed="top" bg="light" expand="lg" collapseOnSelect="true" expanded = { expanded }>
         <Navbar.Brand href="#home">Jobs Offers</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Toggle aria-controls="basic-navbar-nav" onClick = {()=> setExpanded(expanded ? false : "expanded")} />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
+            <Nav.Link href="#home" onClick = {()=> setExpanded(false) }>Home</Nav.Link>
             <NavDropdown.Divider />
-            <Nav.Link href="#link">Link</Nav.Link>
+            <Nav.Link href="#link" onClick = {()=> setExpanded(false) }>Link</Nav.Link>
             <NavDropdown.Divider />
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.1" onClick = {()=> setExpanded(false) }>Action</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.2" onClick = {()=> setExpanded(false) }>Another action</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3" onClick = {()=> setExpanded(false) }>Something</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.4" onClick = {()=> setExpanded(false) }>Separated link</NavDropdown.Item>
             </NavDropdown>
           </Nav>
           <Nav>
-            <Nav.Link onClick={() => handleClick()}>{userIsLogged ? "Logout" : "Login"}
+            <Nav.Link onClick={() => handleClick() }>{userIsLogged ? "Logout" : "Login"}
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
