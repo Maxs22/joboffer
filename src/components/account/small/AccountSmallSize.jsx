@@ -3,16 +3,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import {  Button, Modal } from 'react-bootstrap';
 import Login from '../../login/login';
 import './AccountSmallSize.css'
-import { loginRequired, loginCanceled, logoutRequired, logoutCanceled, loggedOutSuccessfully } from '../../../redux/mainApp/mainAppActions';
+import { loginRequired, loginCanceled, logoutRequired, logoutCanceled, loggedOutSuccessfully } from '../../../redux/loginSate/loginActions';
 
 
 export default function AccountSmallSize() {
 
     const dispatch = useDispatch();
 
-    const showLoginModal = useSelector(state => state.mainApp.loginRequired);
-    const userIsLogged = useSelector(state => state.mainApp.loggedInSuccessfully);
-    const showLogoutModal = useSelector(state => state.mainApp.logoutRequired)
+    const showLoginModal = useSelector(state => state.loginSate.loginRequired);
+    const userIsLogged = useSelector(state => state.loginSate.loggedInSuccessfully);
+    const showLogoutModal = useSelector(state => state.loginSate.logoutRequired)
 
     const loginModal = showLoginModal && (
 

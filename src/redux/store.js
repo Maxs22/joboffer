@@ -1,10 +1,12 @@
 import { createStore } from 'redux'
 import { combineReducers } from 'redux'
-import { mainAppReducer }  from '../../src/redux/mainApp/mainAppReducer'
+import { loginReducer }  from '../../src/redux/loginSate/loginReducer'
+import { jobListReducer }  from '../../src/redux/jobListState/jobListReducer'
 
 
 const rootReducer = combineReducers({
-    mainApp: mainAppReducer
+    loginSate: loginReducer,
+    jobListState:  jobListReducer
 })
 
 //Second parameter activates Redux DevTools

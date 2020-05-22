@@ -5,7 +5,7 @@ const initialState = {
     loggedOutSuccessfully: false
 }
 
-export function mainAppReducer(state = initialState, action) {
+export function loginReducer(state = initialState, action) {
     switch (action.type) {
         case 'LOGIN_REQUIRED': return {
             ...state,
