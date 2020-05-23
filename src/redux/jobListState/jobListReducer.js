@@ -1,7 +1,10 @@
 const initialState = {
     filterApplied: false,
     sortApplied: false,
-    filterValue: []
+    filterValue: [],
+    jobListLoading: false,
+    jobListLoaded: false,
+    jobListObjects: []
 }
 
 export function jobListReducer(state = initialState, action) {
@@ -33,6 +36,18 @@ export function jobListReducer(state = initialState, action) {
             ...state,
             filterApplied: true,
             filterValue: action.payload
+        }
+
+        case 'JOB_LIST_LOADING': return {
+            ...state,
+            jobListLoading: true
+        }
+
+        case 'JOB_LIST_LOADED': return {
+            ...state,
+            jobListLoading: false,
+            jobListLoaded: true,
+            jobListObjects: action.payload
         }
         default: return state
     }

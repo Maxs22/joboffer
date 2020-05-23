@@ -25,3 +25,14 @@ export const sortByPublicationDate = {
 export const sortByLocation = {
     type: 'SORTED_BY_LOCATION'
 }
+
+export const jobListLoading = {
+    type: 'JOB_LIST_LOADING'
+}
+
+export function jobListLoaded (jobs){
+    return {
+        type: 'JOB_LIST_LOADED',
+        payload :jobs
+    }
+}

@@ -36,7 +36,7 @@ export default function JobListOption() {
                         <Dropdown.Item eventKey = "filterBySkills" onSelect= { handleOnSelect }>Habilidad</Dropdown.Item>
                         <Dropdown.Item eventKey = "filterByLocation" onSelect= { handleOnSelect }>Ubicacion</Dropdown.Item>
                         <Dropdown.Item eventKey = "filterByTypeOfCompany" onSelect= { handleOnSelect }>Typo de Empresa</Dropdown.Item>
-                    </DropdownButton>|
+                    </DropdownButton>
                 </Col>
             </Row>
         </div>
