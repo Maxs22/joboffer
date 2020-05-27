@@ -30,6 +30,10 @@ export const jobListLoading = {
     type: 'JOB_LIST_LOADING'
 }
 
+export const jobListLoadingError = {
+    type: 'JOB_LIST_LOADING_ERROR'
+}
+
 export function jobListLoaded (jobs){
     return {
         type: 'JOB_LIST_LOADED',

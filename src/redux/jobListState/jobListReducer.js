@@ -4,7 +4,8 @@ const initialState = {
     filterValue: [],
     jobListLoading: false,
     jobListLoaded: false,
-    jobListObjects: []
+    jobListObjects: [],
+    jobListLoadingError: false
 }
 
 export function jobListReducer(state = initialState, action) {
@@ -47,8 +48,18 @@ export function jobListReducer(state = initialState, action) {
             ...state,
             jobListLoading: false,
             jobListLoaded: true,
-            jobListObjects: action.payload
+            jobListObjects: action.payload,
+            jobListLoadingError: false
         }
+
+        case 'JOB_LIST_LOADING_ERROR': return {
+            ...state,
+            jobListLoading: false,
+            jobListLoaded: false,
+            jobListObjects: [],
+            jobListLoadingError: true
+        }
+
         default: return state
     }
 }
