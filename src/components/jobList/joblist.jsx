@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Container } from 'react-bootstrap';
 import { jobListLoading, jobListLoaded } from '../../redux/jobListState/jobListActions';
@@ -11,21 +11,23 @@ export default function JobList() {
 
     const showLoadingSpinner = useSelector(state => state.jobListState.jobListLoading);
 
-    const jobs = useSelector(state => state.jobListState.jobListObjects);
+    let jobs = useSelector(state => state.jobListState.jobListObjects);
 
-    if (typeof jobs === 'undefined' || jobs.length === 0) {
-        dispatch(jobListLoading);
 
-        let jobs = [];
+    useEffect(()=>{
 
-        fetch('https://jsonplaceholder.typicode.com/posts/1/comments')
-        .then(response => response.json())
-        .then(json => {
-            jobs = json;
-            dispatch(jobListLoaded(jobs));
-        });
-
-    }
+        if (typeof jobs === 'undefined' || jobs.length === 0) {
+            dispatch(jobListLoading);
+    
+            fetch('http://jsonplaceholder.typicode.com/posts/1/comments')
+            .then(response => response.json())
+            .then(json => {
+                dispatch(jobListLoaded(json));
+            });
+    
+        }
+    }, [jobs]);
+    
 
     const spinner = showLoadingSpinner && (
         <span>

@@ -24,13 +24,13 @@ export default function JobListOption() {
     return (
         <div>
             <Row className="mainContainer">
-                <Col xs={{ span: 3, offset: 6 }} >
+                <Col xs={{ span: 3, offset: 2 }} >
                     <DropdownButton variant='info' id="dropdown-basic-button" title="Ordenar">
                         <Dropdown.Item eventKey = "sortByPublicationDate" onSelect= { handleOnSelect }>Fecha de Publicación</Dropdown.Item>
                         <Dropdown.Item eventKey = "sortByLocation" onSelect= { handleOnSelect }>Lugar de trabajo</Dropdown.Item>
                     </DropdownButton>
                 </Col>
-                <Col xs={1}>
+                <Col xs={{span: 3, offset: 1}}>
                     <DropdownButton variant='info' id="dropdown-basic-button" title="Filtrar">
                         <Dropdown.Item eventKey = "filterByPositionName" onSelect= { handleOnSelect }>Nombre del puesto</Dropdown.Item>
                         <Dropdown.Item eventKey = "filterBySkills" onSelect= { handleOnSelect }>Habilidad</Dropdown.Item>
