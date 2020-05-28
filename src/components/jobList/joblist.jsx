@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Container } from 'react-bootstrap';
 import { jobListLoading, jobListLoaded, jobListLoadingError } from '../../redux/jobListState/jobListActions';
-import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import JobListItem from '../jobListItem/jobListItem';
 import Loader from 'react-loader-spinner'
 
 export default function JobList() {
@@ -14,14 +15,17 @@ export default function JobList() {
 
     let jobs = useSelector(state => state.jobListState.jobListObjects);
 
+    let jobItems = <p>No hay ofertas de trabajo</p>;
 
     useEffect(()=>{
 
         if ((typeof jobs === 'undefined' || jobs.length === 0) && ! jobOfferLoadingError ) {
 
             dispatch(jobListLoading);
-    
-            fetch('http://localhost:61256/api/JobOffer')
+
+            fetch('http://localhost:61256/api/JobOffer',{
+                mode: 'cors'
+            })
             .then(response => response.json())
             .then(json => {
                 dispatch(jobListLoaded(json));
@@ -29,10 +33,17 @@ export default function JobList() {
             .catch(function(error) {
                 dispatch(jobListLoadingError);
               });
-    
+
         }
+        else
+        {
+            jobItems = jobs.map(item => {
+                return (<JobListItem job = { item }></JobListItem>);
+            });
+        }
+
     }, [jobs]);
-    
+
 
     const spinner = showLoadingSpinner && (
         <span>
@@ -49,7 +60,7 @@ export default function JobList() {
     return (
         <Container>
             { spinner }
-            Container List
+            { jobItems }
         </Container>
     );
 }
