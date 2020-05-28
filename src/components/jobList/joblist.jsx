@@ -35,15 +35,13 @@ export default function JobList() {
               });
 
         }
-        else
-        {
-            jobItems = jobs.map(item => {
-                return (<JobListItem job = { item }></JobListItem>);
-            });
-        }
 
     }, [jobs]);
 
+    if(jobs.length > 0)
+    {
+        jobItems = <JobListItem job={ jobs[0] }></JobListItem>;
+    }
 
     const spinner = showLoadingSpinner && (
         <span>

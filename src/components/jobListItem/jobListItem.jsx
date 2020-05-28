@@ -1,23 +1,29 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Container, Card } from 'react-bootstrap';
+import Moment from 'moment';
 
-export default function JobListItem() {
+export default function JobListItem(item) {
 
     const dispatch = useDispatch();
 
-    const [job, setJobs] = useState();
+    Moment.locale('es');
 
-    return (<Container>
+    const card = item !== undefined && (
         <Card>
             <Card.Body>
-                <Card.Title>{job.title}</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">{job.company.name}</Card.Subtitle>
+                <Card.Title>{item.job.title}</Card.Title>
+                <Card.Subtitle className="mb-2 text-muted">{item.job.company.name} - Publicado { Moment(item.job.date).format('d MMM') }</Card.Subtitle>
                 <Card.Text>
-                    {job.description}
+                    {item.job.description}
                 </Card.Text>
                 <Card.Link href="#">Ver aviso</Card.Link>
             </Card.Body>
         </Card>
+    );
+
+
+    return (<Container>
+        { card }
     </Container>);
 }
