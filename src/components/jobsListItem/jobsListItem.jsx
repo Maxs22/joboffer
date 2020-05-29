@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Container, Card } from 'react-bootstrap';
 import Moment from 'moment';
+import './jobsListItem.css';
 
-export default function JobListItem(item) {
+export default function JobsListItem(item) {
 
     const dispatch = useDispatch();
 
@@ -12,12 +13,12 @@ export default function JobListItem(item) {
     const card = item !== undefined && (
         <Card>
             <Card.Body>
-                <Card.Title>{item.job.title}</Card.Title>
+                <Card.Title>{item.job.title} - {item.job.zone} </Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">{item.job.company.name} - Publicado { Moment(item.job.date).format('d MMM') }</Card.Subtitle>
                 <Card.Text>
                     {item.job.description}
                 </Card.Text>
-                <Card.Link href="#">Ver aviso</Card.Link>
+                <Card.Link href={item.job.id}>Ver aviso</Card.Link>
             </Card.Body>
         </Card>
     );

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import MainNavBar from '../navBar/mainNavBar';
-import JobListOption from '../jobListOptions/jobListOpton';
-import JobList from '../jobList/joblist'
+import JobsListOption from '../jobsListOptions/jobsListOpton';
+import JobsList from '../jobsList/jobsList'
 import './dashboard.css';
 
 
@@ -17,13 +17,13 @@ export default function Dashboard(props) {
             </Row>
             <Row>
                 <Col>
-                    <JobListOption></JobListOption>
+                    <JobsListOption></JobsListOption>
                 </Col>
             </Row>
-            <hr/>
+            <hr className="headerLineSeparator"/>
             <Row>
                 <Col>
-                    <JobList></JobList>
+                    <JobsList></JobsList>
                 </Col>
             </Row>
         </Container>

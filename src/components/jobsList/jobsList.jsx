@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Container } from 'react-bootstrap';
 import { jobListLoading, jobListLoaded, jobListLoadingError } from '../../redux/jobListState/jobListActions';
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-import JobListItem from '../jobListItem/jobListItem';
+import JobsListItem from '../jobsListItem/jobsListItem';
 import Loader from 'react-loader-spinner'
 
-export default function JobList() {
+export default function JobsList() {
 
     const dispatch = useDispatch();
 
@@ -40,7 +40,7 @@ export default function JobList() {
 
     if(jobs.length > 0)
     {
-        jobItems = <JobListItem job={ jobs[0] }></JobListItem>;
+        jobItems = jobs.map(item => <JobsListItem key={item} job={ item }></JobsListItem>);
     }
 
     const spinner = showLoadingSpinner && (

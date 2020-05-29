@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Row, Col, DropdownButton, Dropdown } from 'react-bootstrap';
 import { filterByPositionName, filterBySkills, filterByLocation, filterByTypeOfCompany, sortByPublicationDate, sortByLocation} from '../../redux/jobListState/jobListActions';
 
-export default function JobListOption() {
+export default function JobsListOption() {
 
     const dispatch = useDispatch();
 
