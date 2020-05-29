@@ -1,10 +1,10 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import MainNavBar from '../navBar/mainNavBar';
-import JobsListOption from '../jobsListOptions/jobsListOpton';
-import JobsList from '../jobsList/jobsList'
 import './dashboard.css';
-
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import JobsListPage from '../../pages/jobsList/jobsListPage';
+import JobDetailPage from '../../pages/jobDetail/jobDetailPage';
 
 export default function Dashboard(props) {
 
@@ -15,17 +15,16 @@ export default function Dashboard(props) {
                     <MainNavBar></MainNavBar>
                 </Col>
             </Row>
-            <Row>
-                <Col>
-                    <JobsListOption></JobsListOption>
-                </Col>
-            </Row>
-            <hr className="headerLineSeparator"/>
-            <Row>
-                <Col>
-                    <JobsList></JobsList>
-                </Col>
-            </Row>
+            <Router>
+                <Switch>
+                    <Route path="/" exact>
+                        <JobsListPage></JobsListPage>
+                    </Route>
+                    <Route path="/jobdetail/">
+                        <JobDetailPage></JobDetailPage>
+                    </Route>
+                </Switch>
+            </Router>
         </Container>
     )
 }

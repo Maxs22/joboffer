@@ -18,7 +18,7 @@ export default function JobsListItem(item) {
                 <Card.Text>
                     {item.job.description}
                 </Card.Text>
-                <Card.Link href={item.job.id}>Ver aviso</Card.Link>
+                <Card.Link href= {'jobdetail/' + item.job.id} >Ver aviso</Card.Link>
             </Card.Body>
         </Card>
     );
