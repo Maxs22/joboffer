@@ -5,7 +5,8 @@ const initialState = {
     jobListLoading: false,
     jobListLoaded: false,
     jobListObjects: [],
-    jobListLoadingError: false
+    jobListLoadingError: false,
+    jobdIdSelected: ''
 }
 
 export function jobListReducer(state = initialState, action) {
@@ -58,6 +59,11 @@ export function jobListReducer(state = initialState, action) {
             jobListLoaded: false,
             jobListObjects: [],
             jobListLoadingError: true
+        }
+
+        case 'JOB_SELECTED': return {
+            ...state,
+            jobdIdSelected: action.payload
         }
 
         default: return state

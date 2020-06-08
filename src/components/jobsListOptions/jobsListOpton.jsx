@@ -23,7 +23,7 @@ export default function JobsListOption() {
 
     return (
         <div>
-            <Row className="mainContainer">
+            <Row>
                 <Col xs={{ span: 3, offset: 2 }} >
                     <DropdownButton variant='info' id="dropdown-basic-button" title="Ordenar">
                         <Dropdown.Item eventKey = "sortByPublicationDate" onSelect= { handleOnSelect }>Fecha de Publicación</Dropdown.Item>
@@ -33,9 +33,9 @@ export default function JobsListOption() {
                 <Col xs={{span: 3, offset: 1}}>
                     <DropdownButton variant='info' id="dropdown-basic-button" title="Filtrar">
                         <Dropdown.Item eventKey = "filterByPositionName" onSelect= { handleOnSelect }>Nombre del puesto</Dropdown.Item>
-                        <Dropdown.Item eventKey = "filterBySkills" onSelect= { handleOnSelect }>Habilidad</Dropdown.Item>
+                        <Dropdown.Item eventKey = "filterBySkills" onSelect= { handleOnSelect }>Habilidades</Dropdown.Item>
                         <Dropdown.Item eventKey = "filterByLocation" onSelect= { handleOnSelect }>Ubicacion</Dropdown.Item>
-                        <Dropdown.Item eventKey = "filterByTypeOfCompany" onSelect= { handleOnSelect }>Typo de Empresa</Dropdown.Item>
+                        <Dropdown.Item eventKey = "filterByTypeOfCompany" onSelect= { handleOnSelect }>Tipo de Empresa</Dropdown.Item>
                     </DropdownButton>
                 </Col>
             </Row>

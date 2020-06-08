@@ -17,30 +17,39 @@ export default function JobsList() {
 
     let jobItems = <p>No hay ofertas de trabajo</p>;
 
+    
+
     useEffect(()=>{
 
-        if ((typeof jobs === 'undefined' || jobs.length === 0) && ! jobOfferLoadingError ) {
+        const fetchJobs = async () =>{
 
-            dispatch(jobListLoading);
-
-            fetch('http://localhost:61256/api/JobOffer',{
+            const data = await fetch('http://localhost:61256/api/jobsoffer',{
                 mode: 'cors'
-            })
-            .then(response => response.json())
-            .then(json => {
-                dispatch(jobListLoaded(json));
             })
             .catch(function(error) {
                 dispatch(jobListLoadingError);
               });
 
+            const json = await data.json();
+
+            console.log(json);
+
+            dispatch(jobListLoaded(json));
+
         }
 
-    }, [jobs]);
+        if ((typeof jobs === 'undefined' || jobs.length === 0) && ! jobOfferLoadingError ) {
+
+            dispatch(jobListLoading);
+
+            fetchJobs();
+        }
+
+    }, [jobs, dispatch, jobOfferLoadingError]);
 
     if(jobs.length > 0)
     {
-        jobItems = jobs.map(item => <JobsListItem key={item} job={ item }></JobsListItem>);
+        jobItems = jobs.map(item => <JobsListItem key={item.id}  job={ item }></JobsListItem>);
     }
 
     const spinner = showLoadingSpinner && (
