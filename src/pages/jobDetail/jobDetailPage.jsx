@@ -4,16 +4,29 @@ import JobDetail from '../../components/jobDetail/jobDetail';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams} from "react-router";
 import { jobDetailLoadingError, jobDetailLoaded, jobDetailLoading } from '../../redux/jobDetailState/jobDetailActions';
+import Loader from 'react-loader-spinner'
 
 export default function JobDetailPage() {
 
     const job = useSelector(state => state.jobDetailState.jobDetailObject);
+    const showLoadingSpinner = useSelector(state => state.jobDetailState.jobDetailLoading);
 
     const dispatch = useDispatch();
 
     let param = useParams();
 
-    let detailToShow = 'No se encontró información';
+    const spinner = showLoadingSpinner && (
+        <span>
+            <Loader
+                type="TailSpin"
+                color="black"
+                height={100}
+                width={100} //3 secs
+            />
+            <p>Cargando...</p>
+        </span>
+       );
+
 
     useEffect(()=>{
 
@@ -26,9 +39,13 @@ export default function JobDetailPage() {
                 dispatch(jobDetailLoadingError);
               });
 
-            const json = await data.json();
+            if(typeof data !== "undefined" ){
 
-            dispatch(jobDetailLoaded(json));
+                const json = await data.json();
+
+                dispatch(jobDetailLoaded(json));
+
+            }
         }
 
         if (Object.keys(job).length === 0) {
@@ -40,14 +57,16 @@ export default function JobDetailPage() {
 
     }, [job, dispatch, param.id]);
 
+    let detailToShow = Object.keys(job).length === 0 && !showLoadingSpinner ? 'No se encontró información' : '';
 
     if (Object.keys(job).length !== 0) {
 
-        detailToShow = <JobDetail jobToDisplay = {job}></JobDetail>;
+        detailToShow = <JobDetail></JobDetail>;
     }
 
     return (
         <Container>
+            { spinner }
             <Row>
                 <Col>
                     { detailToShow }

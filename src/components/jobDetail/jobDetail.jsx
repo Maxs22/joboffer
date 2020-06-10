@@ -1,13 +1,11 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Container } from 'react-bootstrap';
+import React  from 'react';
+import { useSelector } from 'react-redux';
+
 
 export default function JobDetail(props) {
 
-    const dispatch = useDispatch();
-
-    const [jobToDisplay] = useState(props.jobToDisplay);
-
+    const jobToDisplay = useSelector(state => state.jobDetailState.jobDetailObject);
+    
     return (
         <div>
             <h5>

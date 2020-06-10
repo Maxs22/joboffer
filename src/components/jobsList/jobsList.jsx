@@ -15,10 +15,6 @@ export default function JobsList() {
 
     let jobs = useSelector(state => state.jobListState.jobListObjects);
 
-    let jobItems = <p>No hay ofertas de trabajo</p>;
-
-    
-
     useEffect(()=>{
 
         const fetchJobs = async () =>{
@@ -30,15 +26,16 @@ export default function JobsList() {
                 dispatch(jobListLoadingError);
               });
 
-            const json = await data.json();
+            if(typeof data !== "undefined" ){
 
-            console.log(json);
+                const json = await data.json();
 
-            dispatch(jobListLoaded(json));
+                dispatch(jobListLoaded(json));
+            }
 
         }
 
-        if ((typeof jobs === 'undefined' || jobs.length === 0) && ! jobOfferLoadingError ) {
+        if ((typeof jobs === 'undefined' || jobs.length === 0) && !jobOfferLoadingError){
 
             dispatch(jobListLoading);
 
@@ -46,6 +43,8 @@ export default function JobsList() {
         }
 
     }, [jobs, dispatch, jobOfferLoadingError]);
+
+    let jobItems = jobs.length === 0 && !showLoadingSpinner ? <p>No hay ofertas de trabajo</p> : "";
 
     if(jobs.length > 0)
     {
