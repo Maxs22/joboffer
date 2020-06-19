@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import JobsListOption from '../../components/jobsListOptions/jobsListOpton';
 import JobsList from '../../components/jobsList/jobsList';
