@@ -1,18 +1,29 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Moment from 'moment';
 import { Tabs, Tab, Table, Button } from 'react-bootstrap';
+import { loginRequired } from '../../redux/loginState/loginActions';
 
 
 export default function JobDetail() {
 
     const jobToDisplay = useSelector(state => state.jobDetailState.jobDetailObject);
 
+    const isLoggedInSuccessfully = useSelector(state => state.loginState.loggedInSuccessfully);
+
+    const floatLeft = {
+        float: 'left'
+    }
+
+    const clear = {
+        clear: 'both'
+    }
+
     const language = jobToDisplay.language !== null ? (
         <div>
-            <label>Idioma:</label>
+            <strong>Idioma:</strong>
             <p>{jobToDisplay.language}</p>
-            <label>Nivel:</label>
+            <strong>Nivel:</strong>
             <p>{jobToDisplay.languageLevel}</p>
         </div>
     ) : "";
@@ -28,22 +39,48 @@ export default function JobDetail() {
             </thead>
             <tbody>
                 {jobToDisplay.skillsRequired.map(item => (
-                    <tr>
+                    <tr key={item.skill.name}>
                         <td>{item.skill.name}</td>
                         <td>{item.years}</td>
                         <td>{item.isMandatory ? "Si" : "No"}</td>
-                        <hr />
                     </tr>
                 ))}
             </tbody>
         </Table>
     );
 
+    const details = (
+        <div>
+            <div style={floatLeft}>
+                {language}
+                <strong>Zona:</strong>
+                <p>{jobToDisplay.zone}</p>
+                <strong>Momento de inicio:</strong>
+                <p>{jobToDisplay.contractInformation.startingFrom}</p>
+            </div>
+            <div>
+                <strong>Horario laboral:</strong>
+                <p>{jobToDisplay.contractInformation.workingDays}</p>
+                <strong>Tipo de contratación:</strong>
+                <p>{jobToDisplay.contractInformation.kindOfContract}</p>
+            </div>
+        </div>
+    );
+
+    const dispatch = useDispatch();
+
+    const handlePostulation = (event) => {
+        
+        if(!isLoggedInSuccessfully){
+            dispatch(loginRequired);
+        }
+    }
+
     return (
-        <div class="page-header">
+        <div className="page-header">
             <h1>{jobToDisplay.title}</h1>
             <small>{jobToDisplay.company.name} - Publicado {Moment(jobToDisplay.date).format('d MMM')}</small>
-            <hr />
+            <br /><br />
             <Tabs defaultActiveKey="desc" id="uncontrolled-tab-example">
                 <Tab eventKey="desc" title="Descripción">
                     <br /><br />
@@ -51,25 +88,19 @@ export default function JobDetail() {
                 </Tab>
                 <Tab eventKey="det" title="Detalles">
                     <br /><br />
-                    {language}
-                    <label>Zona:</label>
-                    <p>{jobToDisplay.zone}</p>
-                    <label>Momento de inicio:</label>
-                    <p>{jobToDisplay.contractInformation.startingFrom}</p>
-                    <label>Horario laboral:</label>
-                    <p>{jobToDisplay.contractInformation.workingDays}</p>
-                    <label>Tipo de contratación:</label>
-                    <p>{jobToDisplay.contractInformation.kindOfContract}</p>
+                    {details}
                 </Tab>
                 <Tab eventKey="skills" title="Habilidades">
                     <br /><br />
                     {skills}
                 </Tab>
             </Tabs>
-            <br/><hr/>
-            <Button variant="primary" size="lg">
-                Postularme
-            </Button>
+            <div style={clear}>
+                <br /><hr />
+                <Button variant="primary" size="lg" onClick = {handlePostulation}>
+                    Postularme
+                </Button>
+            </div>
         </div>
     );
 }

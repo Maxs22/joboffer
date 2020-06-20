@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import logo from './job.jpg';
-import { loggedInSuccessfully } from '../../redux/loginSate/loginActions';
+import { loggedInSuccessfully, loginFailed } from '../../redux/loginState/loginActions';
 import { Container, Row, Col } from 'react-bootstrap';
 import './login.css';
 
@@ -28,15 +28,42 @@ export default function Login() {
 
         event.preventDefault();
 
-        if (user !== 'a@b.com') {
-            setLoginMessage('User or password invalid');
-            setloginStatus('error');
+        const requestSignIn = async () =>{
+
+                const data = await fetch('http://localhost:61256/api/account/signin',{
+                method: 'POST',
+                mode: 'cors',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify({email: user, password: password })
+                })
+                .catch(function(error) {
+                    dispatch(loginFailed);
+                    setLoginMessage('User or password invalid');
+                    setloginStatus('error');
+                });
+
+                if(typeof data !== "undefined" ){
+
+                    const token = await data.json();
+
+                    if (token !== ''){
+                        setloginStatus('success');
+                        setLoginMessage('Login Success');
+                        dispatch(loggedInSuccessfully(token));
+                    }
+                    else
+                    {
+                        dispatch(loginFailed);
+                        setLoginMessage('User or password invalid');
+                        setloginStatus('error');
+                    }
+                }
         }
-        else {
-            setloginStatus('success');
-            setLoginMessage('Login Success');
-            dispatch(loggedInSuccessfully);
-        }
+
+        requestSignIn();
     }
 
     const loginMessageTitle = loginStatus === "initial" ? "" :

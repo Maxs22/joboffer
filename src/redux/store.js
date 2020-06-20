@@ -1,11 +1,11 @@
 import { createStore } from 'redux'
 import { combineReducers } from 'redux'
-import { loginReducer }  from '../../src/redux/loginSate/loginReducer'
+import { loginReducer }  from '../../src/redux/loginState/loginReducer'
 import { jobListReducer }  from '../../src/redux/jobListState/jobListReducer'
 import { jobDetailReducer } from '../../src/redux/jobDetailState/jobDetailReducer'
 
 const rootReducer = combineReducers({
-    loginSate: loginReducer,
+    loginState: loginReducer,
     jobListState:  jobListReducer,
     jobDetailState: jobDetailReducer
 })

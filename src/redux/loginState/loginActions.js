@@ -2,8 +2,11 @@ export const loginRequired = {
     type: 'LOGIN_REQUIRED'
 }
 
-export const loggedInSuccessfully = {
-    type: 'LOGGED_IN_SUCCESSFULLY'
+export function loggedInSuccessfully (token){
+    return {
+        type: 'LOGGED_IN_SUCCESSFULLY',
+        payload: token
+    }
 }
 
 export const logoutRequired = {
@@ -20,4 +23,8 @@ export const loginCanceled = {
 
 export const logoutCanceled = {
     type: 'LOGOUT_CANCELED'
+}
+
+export const loginFailed = {
+    type: 'LOGIN_FAILED'
 }
