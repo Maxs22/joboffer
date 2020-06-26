@@ -2,7 +2,9 @@ const initialState = {
     jobDetailLoading: false,
     jobDetailLoaded: false,
     jobDetailObject: {},
-    jobDetailLoadingError: false
+    jobDetailLoadingError: false,
+    jobDetailPostulating: false,
+    JobDetailPostulationSuccess: false
 }
 
 export function jobDetailReducer(state = initialState, action) {
@@ -26,6 +28,20 @@ export function jobDetailReducer(state = initialState, action) {
             jobDetailLoaded: true,
             jobDetailLoadingError: false,
             jobDetailObject: action.payload
+        };
+        case 'JOB_DETAIL_POSTULATING': return {
+            ...state,
+            jobDetailPostulating: true
+        };
+        case 'JOB_DETAIL_POSTULATION_SUCESS': return {
+            ...state,
+            jobDetailPostulating: false,
+            JobDetailPostulationSuccess: true
+        };
+        case 'JOB_DETAIL_POSTULATING_POSTULATION_ERROR': return {
+            ...state,
+            jobDetailPostulating: false,
+            JobDetailPostulationSuccess: false
         };
         default: return state;
     }

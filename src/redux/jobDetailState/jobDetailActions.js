@@ -13,3 +13,15 @@ export function jobDetailLoaded (job){
         payload :job
     }
 }
+
+export const jobDetailPostulating = {
+    type: 'JOB_DETAIL_POSTULATING'
+}
+
+export const jobDetailPostulationSuccess = {
+    type: 'JOB_DETAIL_POSTULATION_SUCESS'
+}
+
+export const jobDetailPostulationError = {
+    type: 'JOB_DETAIL_POSTULATING_POSTULATION_ERROR'
+}

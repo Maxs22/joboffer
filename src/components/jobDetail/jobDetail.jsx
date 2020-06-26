@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Moment from 'moment';
 import { Tabs, Tab, Table, Button } from 'react-bootstrap';
 import { loginRequired } from '../../redux/loginState/loginActions';
+import { jobDetailPostulationError, jobDetailPostulationSuccess, jobDetailPostulating } from '../../redux/jobDetailState/jobDetailActions';
 
 
 export default function JobDetail() {
@@ -10,6 +11,12 @@ export default function JobDetail() {
     const jobToDisplay = useSelector(state => state.jobDetailState.jobDetailObject);
 
     const isLoggedInSuccessfully = useSelector(state => state.loginState.loggedInSuccessfully);
+
+    const isJobDetailPostulating = useSelector(state => state.jobDetailState.jobDetailPostulating);
+
+    const token = useSelector(state => state.loginState.token);
+
+    const user = useSelector(state => state.loginState.user);
 
     const floatLeft = {
         float: 'left'
@@ -70,9 +77,44 @@ export default function JobDetail() {
     const dispatch = useDispatch();
 
     const handlePostulation = (event) => {
-        
+
         if(!isLoggedInSuccessfully){
+
             dispatch(loginRequired);
+        }
+        else {
+
+            const postulate = async () =>{
+
+                const data = await fetch('http://localhost:61256/api/person/applytojoboffer',{
+                method: 'POST',
+                mode: 'cors',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify({jobOfferId: jobToDisplay.id, token: token, user: user})
+                })
+                .catch(function(error) {
+                    dispatch(jobDetailPostulationError);
+                });
+
+                if(typeof data !== "undefined" ){
+
+                    if (data.status !== 200){
+                        dispatch(jobDetailPostulationError);
+                    }
+                    else
+                    {
+                        dispatch(jobDetailPostulationSuccess);
+                    }
+                }
+            }
+
+            if(!isJobDetailPostulating) {
+                dispatch(jobDetailPostulating);
+                postulate();
+            }
         }
     }
 

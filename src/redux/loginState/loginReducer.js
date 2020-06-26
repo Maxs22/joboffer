@@ -3,6 +3,7 @@ const initialState = {
     loggedInSuccessfully: false,
     logoutRequired: false,
     loggedOutSuccessfully: false,
+    user: '',
     token:''
 }
 
@@ -16,7 +17,8 @@ export function loginReducer(state = initialState, action) {
             ...state,
             loggedInSuccessfully: true,
             loginRequired: false,
-            token: action.payload
+            token: action.payload.token,
+            user: action.payload.user
         }
         case 'LOGOUT_REQUIRED': return {
             ...state,

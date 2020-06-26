@@ -52,7 +52,7 @@ export default function Login() {
                     if (token !== ''){
                         setloginStatus('success');
                         setLoginMessage('Login Success');
-                        dispatch(loggedInSuccessfully(token));
+                        dispatch(loggedInSuccessfully(token, user));
                     }
                     else
                     {

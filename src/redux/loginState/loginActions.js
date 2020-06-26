@@ -2,10 +2,10 @@ export const loginRequired = {
     type: 'LOGIN_REQUIRED'
 }
 
-export function loggedInSuccessfully (token){
+export function loggedInSuccessfully (token, user){
     return {
         type: 'LOGGED_IN_SUCCESSFULLY',
-        payload: token
+        payload: { 'token': token, 'user': user}
     }
 }
 
