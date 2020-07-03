@@ -91,9 +91,10 @@ export default function JobDetail() {
                 mode: 'cors',
                 headers: {
                     'Accept': 'application/json',
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization':'Bearer ' + token.token
                   },
-                  body: JSON.stringify({jobOfferId: jobToDisplay.id, token: token, user: user})
+                  body: JSON.stringify({jobOfferId: jobToDisplay.id, user: user})
                 })
                 .catch(function(error) {
                     dispatch(jobDetailPostulationError);

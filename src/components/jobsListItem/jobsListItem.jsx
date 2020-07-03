@@ -15,10 +15,10 @@ export default function JobsListItem(props) {
 
     const setJobIdSelected = (event)=>{
 
-        dispatch(jobSelected(props.job.id));
-        dispatch(jobDetailLoaded(props.job))
+        dispatch(jobSelected(props.job.jobOffer.id));
+        dispatch(jobDetailLoaded(props.job.jobOffer))
 
-        history.push('jobdetail/' + props.job.id);
+        history.push('jobdetail/' + props.job.jobOffer.id);
 
         event.preventDefault()
     }
@@ -28,12 +28,12 @@ export default function JobsListItem(props) {
     const card = props !== undefined && (
         <Card>
             <Card.Body>
-                <Card.Title>{props.job.title} - {props.job.zone} </Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">{props.job.company.name} - Publicado { Moment(props.job.date).format('d MMM') }</Card.Subtitle>
+                <Card.Title>{props.job.jobOffer.title} - {props.job.jobOffer.zone} </Card.Title>
+                <Card.Subtitle className="mb-2 text-muted">{props.job.jobOffer.company.name} - Publicado { Moment(props.job.jobOffer.date).format('d MMM') }</Card.Subtitle>
                 <Card.Text>
-                    {props.job.description}
+                    {props.job.jobOffer.description}
                 </Card.Text>
-                <Card.Link href= {'jobdetail/' + props.job.id} onClick = {setJobIdSelected} >Ver aviso</Card.Link>
+                <Card.Link href= {'jobdetail/' + props.job.jobOffer.id} onClick = {setJobIdSelected} >Ver aviso</Card.Link>
             </Card.Body>
         </Card>
     );
