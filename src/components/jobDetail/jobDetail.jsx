@@ -92,9 +92,9 @@ export default function JobDetail() {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    'Authorization':'Bearer ' + token.token
+                    'Authorization':' Bearer ' + token.token
                   },
-                  body: JSON.stringify({jobOfferId: jobToDisplay.id, user: user})
+                  body: JSON.stringify({JobOfferId: jobToDisplay.id, User: user })
                 })
                 .catch(function(error) {
                     dispatch(jobDetailPostulationError);
