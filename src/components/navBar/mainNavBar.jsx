@@ -1,10 +1,9 @@
 import React, { useState }from 'react';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button, Modal } from 'react-bootstrap';
+import { Button, Modal, Container } from 'react-bootstrap';
 import Login from '../login/login'
 import { loginRequired, loginCanceled, logoutRequired, logoutCanceled, loggedOutSuccessfully } from '../../redux/loginState/loginActions';
-import wimeron from './wimeron.png';
 import './mainNavBar.css'
 
 export default function MainNavBar() {
@@ -58,9 +57,9 @@ export default function MainNavBar() {
 
 
   return (
-    <span>
+    <Container>
       <Navbar fixed="top" bg="dark" variant="dark" expand="lg" collapseOnSelect="true" expanded = { expanded }>
-        <Navbar.Brand href="#home">Ofertas de trabajo</Navbar.Brand>
+        <Navbar.Brand href="/">Ofertas de trabajo</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" onClick = {()=> setExpanded(expanded ? false : "expanded")} />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
@@ -86,7 +85,7 @@ export default function MainNavBar() {
       </Navbar>
       {loginModal}
       {logoutConfirmModal}
-    </span>
+    </Container>
   );
 
 }

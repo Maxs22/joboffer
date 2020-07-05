@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import { Provider } from 'react-redux'
 import store from './redux/store'
-import Dashboard from './components/dashboard/dashboard';
+import DefaultHome from './components/defaultHome/defaultHome';
 import { BrowserRouter as Router } from "react-router-dom";
 
 
@@ -13,7 +13,7 @@ function App() {
     <Provider store={store}>
       <Router>
         <div className="App">
-          <Dashboard></Dashboard>
+          <DefaultHome></DefaultHome>
         </div>
       </Router>
     </Provider>
