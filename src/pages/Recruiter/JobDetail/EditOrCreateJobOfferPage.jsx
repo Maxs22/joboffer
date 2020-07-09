@@ -6,7 +6,7 @@ import TextInput from 'react-autocomplete-input';
 import 'react-autocomplete-input/dist/bundle.css';
 import 'rc-datepicker/lib/style.css'
 
-export default function EditJobOfferPage() {
+export default function EditOrCreateJobOfferPage() {
 
 
     const date = '2015-06-26' // or Date or Moment.js

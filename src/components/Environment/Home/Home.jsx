@@ -6,7 +6,8 @@ import { Route, Switch } from "react-router-dom";
 import JobsListPageJobSeeker from '../../../pages/JobSeeker/JobsList/JobsListPageForJobSeeker';
 import JobDetailPageForJobSeeker from '../../../pages/JobSeeker/JobDetail/JobDetailPageForJobSeeker';
 import RecruiterHomePage from '../../../pages/Recruiter/JobList/JobListPageForRecruiter';
-import EditJobOfferPage from '../../../pages/Recruiter/JobDetail/EditOrCreateJobOfferPage';
+import EditOrCreateJobOfferPage from '../../../pages/Recruiter/JobDetail/EditOrCreateJobOfferPage';
+import ViewJobOfferDetailPage from '../../../pages/Recruiter/JobDetail/ViewJobOfferDetailPage';
 
 export default function DefaultHome(props) {
 
@@ -28,8 +29,11 @@ export default function DefaultHome(props) {
                         <Route path="/recruiter/" exact>
                             <RecruiterHomePage></RecruiterHomePage>
                         </Route>
-                        <Route path="/recruiter/edit/joboffer/:id">
-                            <EditJobOfferPage></EditJobOfferPage>
+                        <Route path="/recruiter/view/joboffer/:id" exact>
+                            <ViewJobOfferDetailPage></ViewJobOfferDetailPage>
+                        </Route>
+                        <Route path="/recruiter/edit/joboffer/:id" exact>
+                            <EditOrCreateJobOfferPage></EditOrCreateJobOfferPage>
                         </Route>
                     </Switch>
             </Row>

@@ -4,6 +4,7 @@ import { Container, Card } from 'react-bootstrap';
 import { jobSelected } from '../../../redux/JobSeeker/JobList/JobListActions';
 import { jobDetailLoaded } from '../../../redux/JobSeeker/JobDetail/JobDetailActions';
 import Moment from 'moment';
+import 'moment/locale/es';
 import './JobsListItem.css';
 import { useHistory } from "react-router-dom";
 
@@ -29,7 +30,7 @@ export default function JobsListItem(props) {
         <Card>
             <Card.Body>
                 <Card.Title>{props.job.jobOffer.title} - {props.job.jobOffer.zone} </Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">{props.job.jobOffer.company.name} - Publicado { Moment(props.job.jobOffer.date).format('d MMM') }</Card.Subtitle>
+                <Card.Subtitle className="mb-2 text-muted">{props.job.jobOffer.company.name} - Publicado { Moment(props.job.jobOffer.date).format('L') }</Card.Subtitle>
                 <Card.Text>
                     {props.job.jobOffer.description}
                 </Card.Text>

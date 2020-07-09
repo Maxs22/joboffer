@@ -1,8 +1,76 @@
-import React from 'react';
-import { Container, Row, Col, Card, Badge } from 'react-bootstrap';
+import React, { useEffect } from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
+import { useSelector, useDispatch } from 'react-redux';
+import RecruiterJobList from '../../../components/Recruiter/JobList/RecruiterJobList';
+import { loadingJobOffers, failureLoadingJobOffer, jobOffersSuccessfullyLoaded } from '../../../redux/Recruiter/RecruiterActions';
+import { loginRequired } from '../../../redux/Account/Login/LoginActions';
+import Loader from 'react-loader-spinner'
 
 export default function RecruiterHomePage() {
 
+    const showLoadingSpinner = useSelector(state => state.RecruiterState.loadingJobOffers);
+    const jobOffersLoadingError = useSelector(state => state.JobListState.jobOffersSuccessfullyLoaded);
+    const isLoggedInSuccessfully = useSelector(state => state.LoginState.loggedInSuccessfully);
+    const email = useSelector(state => state.LoginState.user);
+    const token = useSelector(state => state.LoginState.token);
+    let jobs = useSelector(state => state.RecruiterState.jobList);
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+
+        if (!isLoggedInSuccessfully) {
+
+            dispatch(loginRequired);
+        }
+        else {
+            const fetchJobs = async () => {
+
+                if ((jobs.length === 0) && !jobOffersLoadingError) {
+
+                    dispatch(loadingJobOffers);
+
+                    const data = await fetch('http://localhost:61256/api/recruiter/getjoboffers/' + email, {
+                        mode: 'cors',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json',
+                            'Authorization': ' Bearer ' + token.token
+                        }
+                    })
+                        .catch(function (error) {
+                            dispatch(failureLoadingJobOffer);
+                        });
+
+                    if (typeof data !== "undefined") {
+
+                        const json = await data.json();
+
+                        dispatch(jobOffersSuccessfullyLoaded(json));
+                    }
+                }
+                else {
+                    dispatch(jobOffersSuccessfullyLoaded(jobs));
+                }
+            }
+
+            fetchJobs();
+        }
+
+    }, [isLoggedInSuccessfully]);
+
+
+    const spinner = showLoadingSpinner && (
+        <span>
+            <Loader
+                type="TailSpin"
+                color="black"
+                height={100}
+                width={100} //3 secs
+            />
+            <p>Cargando...</p>
+        </span>
+    );
 
     return (
         <Container>
@@ -11,41 +79,8 @@ export default function RecruiterHomePage() {
                     <h3>Aviso generados</h3>
                 </Col>
             </Row>
-            <Row>
-                <Col>
-                    <Card>
-                        <Card.Body>
-                            <Card.Title>Analista programador - Palermo</Card.Title>
-                            <Card.Subtitle className="mb-2 text-muted">Cliente: KPMG</Card.Subtitle>
-                            <Badge variant="success">Publicado 2 Enero</Badge>
-                            <Card.Text>
-                                Some quick example text to build on the card title and make up the bulk of
-                                the card's content.
-                            </Card.Text>
-                            <Card.Link href="#">Editar</Card.Link>
-                            <Card.Link href="#">Finalizar</Card.Link>
-                        </Card.Body>
-                    </Card>
-                </Col>
-            </Row>
-            <Row>
-                <Col>
-                    <Card>
-                        <Card.Body>
-                            <Card.Title>JAVA Full Stack Developer - Las Cañitas</Card.Title>
-                            <Card.Subtitle className="mb-2 text-muted">Cliente: Accenture</Card.Subtitle>
-                            <Badge variant="warning">Sin Publicar</Badge>
-                            <Card.Text>
-                                Some quick example text to build on the card title and make up the bulk of
-                                the card's content.
-                            </Card.Text>
-                            <Card.Link href="#">Editar</Card.Link>
-                            <Card.Link href="#">Publicar</Card.Link>
-                            <Card.Link href="#">Finalizar</Card.Link>
-                        </Card.Body>
-                    </Card>
-                </Col>
-            </Row>
+            {spinner}
+            <RecruiterJobList></RecruiterJobList>
         </Container>
     );
 
