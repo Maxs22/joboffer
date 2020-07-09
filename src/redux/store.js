@@ -1,13 +1,13 @@
 import { createStore } from 'redux'
 import { combineReducers } from 'redux'
-import { loginReducer }  from '../../src/redux/loginState/loginReducer'
-import { jobListReducer }  from '../../src/redux/jobListState/jobListReducer'
-import { jobDetailReducer } from '../../src/redux/jobDetailState/jobDetailReducer'
+import { LoginReducer }  from '../../src/redux/Account/Login/LoginReducer';
+import { JobListReducer }  from '../../src/redux/JobSeeker/JobList/JobListReducer';
+import { JobDetailReducer } from '../../src/redux/JobSeeker/JobDetail/JobDetailReducer';
 
 const rootReducer = combineReducers({
-    loginState: loginReducer,
-    jobListState:  jobListReducer,
-    jobDetailState: jobDetailReducer
+    LoginState: LoginReducer,
+    JobListState:  JobListReducer,
+    JobDetailState: JobDetailReducer
 })
 
 
