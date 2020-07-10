@@ -1,12 +1,15 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
 import RecruiterEditCreateJobDetail  from '../../../components/Recruiter/JobDetail/RecruiterEditCreateJobDetail';
-
-import 'react-autocomplete-input/dist/bundle.css';
-import 'rc-datepicker/lib/style.css'
 
 export default function EditJobOfferPage() {
 
+    const selectedJobOfferToEdit = useSelector(state => state.RecruiterCommonState.editingJobOfferId);
+
+    const jobs = useSelector(state => state.RecruiterCommonState.jobList);
+
+    const jobToEdit = jobs.find(j => j.id === selectedJobOfferToEdit);
 
     return (
         <Container>
@@ -18,7 +21,7 @@ export default function EditJobOfferPage() {
             </Row>
             <Row>
                 <Col lg="10">
-                    <RecruiterEditCreateJobDetail></RecruiterEditCreateJobDetail>
+                    <RecruiterEditCreateJobDetail JobOffer = {jobToEdit}></RecruiterEditCreateJobDetail>
                 </Col>
             </Row>
         </Container>
