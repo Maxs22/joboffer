@@ -7,8 +7,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import JobsListPageJobSeeker from '../../../pages/JobSeeker/JobsList/JobsListPageForJobSeeker';
 import JobDetailPageForJobSeeker from '../../../pages/JobSeeker/JobDetail/JobDetailPageForJobSeeker';
 import RecruiterHomePage from '../../../pages/Recruiter/JobList/JobListPageForRecruiter';
-import EditOrCreateJobOfferPage from '../../../pages/Recruiter/JobDetail/EditOrCreateJobOfferPage';
+import EditJobOfferPage from '../../../pages/Recruiter/JobDetail/EditJobOfferPage';
 import ViewJobOfferDetailPage from '../../../pages/Recruiter/JobDetail/ViewJobOfferDetailPage';
+import CreateJobOfferPage from '../../../pages/Recruiter/JobDetail/CreateJobOfferPage';
 
 import { loggedInSuccessfully, loginFailed, loggedOutSuccessfully } from '../../../redux/Account/Login/LoginActions'
 
@@ -79,7 +80,10 @@ export default function DefaultHome(props) {
                         <ViewJobOfferDetailPage></ViewJobOfferDetailPage>
                     </Route>
                     <Route path="/recruiter/edit/joboffer/:id" exact>
-                        <EditOrCreateJobOfferPage></EditOrCreateJobOfferPage>
+                        <EditJobOfferPage></EditJobOfferPage>
+                    </Route>
+                    <Route path="/recruiter/create/joboffer" exact>
+                        <CreateJobOfferPage></CreateJobOfferPage>
                     </Route>
                 </Switch>
             </Row>

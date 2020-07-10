@@ -12,7 +12,7 @@ const initialState = {
     jobList: []
 }
 
-export function RecruiterReducer(state = initialState, action) {
+export function RecruiterCommonReducer(state = initialState, action) {
 
     switch (action.type) {
 

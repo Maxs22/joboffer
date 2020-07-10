@@ -3,13 +3,15 @@ import { combineReducers } from 'redux'
 import { LoginReducer }  from '../redux/Account/Login/LoginReducer';
 import { JobListReducer }  from '../redux/JobSeeker/JobList/JobListReducer';
 import { JobDetailReducer } from '../redux/JobSeeker/JobDetail/JobDetailReducer';
-import { RecruiterReducer} from '../redux/Recruiter/RecruiterReducer';
+import { RecruiterCommonReducer} from './Recruiter/Common/RecruiterCommonReducer';
+import { RecruiterJobListReducer } from '../redux/Recruiter/JobList/RecruiterJobListReducer';
 
 const rootReducer = combineReducers({
     LoginState: LoginReducer,
     JobListState:  JobListReducer,
     JobDetailState: JobDetailReducer,
-    RecruiterState: RecruiterReducer
+    RecruiterCommonState: RecruiterCommonReducer,
+    RecruiterJobListState: RecruiterJobListReducer
 })
 
 /*

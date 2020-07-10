@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Container, Card, Badge } from 'react-bootstrap';
-import { viewingJobOfferDetails, editingJobOffer  } from '../../../redux/Recruiter/RecruiterActions';
+import { viewingJobOfferDetails, editingJobOffer  } from '../../../redux/Recruiter/Common/RecruiterCommonActions';
 import Moment from 'moment';
 import 'moment/locale/es';
 import { useHistory } from "react-router-dom";
@@ -25,7 +25,7 @@ export default function RecruiterJobsListItem(props) {
 
         dispatch(editingJobOffer(props.job.id));
 
-        history.push('edit/joboffer/' + props.job.id);
+        history.push('/recruiter/edit/joboffer/' + props.job.id);
 
         event.preventDefault()
     }
@@ -42,7 +42,7 @@ export default function RecruiterJobsListItem(props) {
                     {props.job.description}
                 </Card.Text>
                 <Card.Link href= {'view/joboffer/' + props.job.id} onClick = {setViewingJobOfferDetail} >Ver detalle</Card.Link>
-                <Card.Link href= {'edit/joboffer/' + props.job.id} onClick = {setEditingJobOffer} >Editar</Card.Link>
+                <Card.Link href= {'/recruiter/edit/joboffer/' + props.job.id} onClick = {setEditingJobOffer} >Editar</Card.Link>
             </Card.Body>
         </Card>
     );

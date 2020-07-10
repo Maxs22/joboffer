@@ -2,17 +2,18 @@ import React, { useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import RecruiterJobList from '../../../components/Recruiter/JobList/RecruiterJobList';
-import { loadingJobOffers, failureLoadingJobOffer, jobOffersSuccessfullyLoaded, removeJobsLoaded } from '../../../redux/Recruiter/RecruiterActions';
+import { loadingJobOffers, failureLoadingJobOffer, jobOffersSuccessfullyLoaded, removeJobsLoaded } from '../../../redux/Recruiter/Common/RecruiterCommonActions';
 import { loginRequired } from '../../../redux/Account/Login/LoginActions';
+import RecruiterJobsListOption from '../../../components/Recruiter/JobListOptions/RecruiterJobsListOption';
 import Loader from 'react-loader-spinner'
 
 export default function RecruiterHomePage() {
 
-    const showLoadingSpinner = useSelector(state => state.RecruiterState.loadingJobOffers);
+    const showLoadingSpinner = useSelector(state => state.RecruiterCommonState.loadingJobOffers);
     const jobOffersLoadingError = useSelector(state => state.JobListState.jobOffersSuccessfullyLoaded);
     const isLoggedInSuccessfully = useSelector(state => state.LoginState.loggedInSuccessfully);
     const token = sessionStorage.getItem("token");
-    let jobs = useSelector(state => state.RecruiterState.jobList);
+    let jobs = useSelector(state => state.RecruiterCommonState.jobList);
 
     const dispatch = useDispatch();
 
@@ -84,7 +85,9 @@ export default function RecruiterHomePage() {
         <Container>
             <Row>
                 <Col>
-                    <h3>Aviso generados</h3>
+                    <h3>Mis avisos creados</h3>
+                    <RecruiterJobsListOption></RecruiterJobsListOption>
+                    <hr/>
                 </Col>
             </Row>
             {spinner}

@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 
 export default function RecruiterJobList() {
 
-    let jobs = useSelector(state => state.RecruiterState.jobList);
+    let jobs = useSelector(state => state.RecruiterCommonState.jobList);
 
     let jobItems = jobs.length === 0 ? <p>No tiene creadas ofertas de trabajo</p> : jobs.map(item => <RecruiterJobsListItem key={item.id}  job={ item }></RecruiterJobsListItem>);
 
