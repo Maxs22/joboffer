@@ -62,7 +62,6 @@ export const failureDeletingJobOffer = {
 
 /////
 export const loadingJobOffers = {
-
     type: 'LOADING_JOB_OFFERS'
 }
 
@@ -74,6 +73,9 @@ export function jobOffersSuccessfullyLoaded(jobs) {
 }
 
 export const failureLoadingJobOffer = {
-    type: 'FAILURE_LOADING_JOB_OFFERS',
-    payload: []
+    type: 'FAILURE_LOADING_JOB_OFFERS'
+}
+
+export const removeJobsLoaded = {
+    type: 'REMOVE_JOBS_LOADED',
 }

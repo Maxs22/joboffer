@@ -37,14 +37,11 @@ export default function JobsListPageForJobSeeker() {
                     dispatch(jobListLoaded(json));
                 }
             }
-            else{
-                dispatch(jobListLoaded(jobs));
-            }
         }
 
         fetchJobs();
 
-    }, []);
+    }, [dispatch, jobs, jobOfferLoadingError]);
 
 
     const spinner = showLoadingSpinner && (

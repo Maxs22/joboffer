@@ -4,11 +4,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button, Modal, Container } from 'react-bootstrap';
 import Login from '../Login/Login';
 import { loginRequired, loginCanceled, logoutRequired, logoutCanceled, loggedOutSuccessfully } from '../../../redux/Account/Login/LoginActions';
+import { useHistory } from "react-router-dom";
 import './NavBar.css';
 
 export default function NavBar() {
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const showLoginModal = useSelector(state => state.LoginState.loginRequired);
   const userIsLogged = useSelector(state => state.LoginState.loggedInSuccessfully);
@@ -48,7 +50,21 @@ export default function NavBar() {
     </Modal>
   )
 
-  const handleClick = (event) => {
+
+  const goToRecruiterHandleClick = (event) => {
+
+    history.push('/recruiter');
+    setExpanded(false);
+    event.preventDefault();
+  }
+
+  const goToHomePageHandleClick = (event) => {
+
+    history.push('/');
+    event.preventDefault();
+  }
+
+  const loginLogouthandleClick = () => {
 
     setExpanded(false);
 
@@ -59,11 +75,11 @@ export default function NavBar() {
   return (
     <Container>
       <Navbar fixed="top" bg="dark" variant="dark" expand="lg" collapseOnSelect="true" expanded = { expanded }>
-        <Navbar.Brand href="/">Ofertas de trabajo</Navbar.Brand>
+        <Navbar.Brand href="/" onClick={goToHomePageHandleClick}>Ofertas de trabajo</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" onClick = {()=> setExpanded(expanded ? false : "expanded")} />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link href="#home" onClick = {()=> setExpanded(false) }>Home</Nav.Link>
+            <Nav.Link href="/recruiter" onClick ={ goToRecruiterHandleClick }>Recruiter</Nav.Link>
             <NavDropdown.Divider />
             <Nav.Link href="#link" onClick = {()=> setExpanded(false) }>Link</Nav.Link>
             <NavDropdown.Divider />
@@ -78,7 +94,7 @@ export default function NavBar() {
             </NavDropdown>
           </Nav>
           <Nav>
-            <Nav.Link onClick={() => handleClick() }>{userIsLogged ? "Logout" : "Login"}
+            <Nav.Link onClick={() => loginLogouthandleClick() }>{userIsLogged ? "Logout" : "Login"}
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>

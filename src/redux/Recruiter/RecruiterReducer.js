@@ -84,6 +84,10 @@ export function RecruiterReducer(state = initialState, action) {
             loadingJobOffers: false,
             jobList: []
         };
+        case 'REMOVE_JOBS_LOADED': return {
+            ...state,
+            jobList: []
+        }
 
         default: return state
     }

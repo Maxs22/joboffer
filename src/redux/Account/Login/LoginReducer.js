@@ -2,9 +2,7 @@ const initialState = {
     loginRequired: false,
     loggedInSuccessfully: false,
     logoutRequired: false,
-    loggedOutSuccessfully: false,
-    user: '',
-    token:''
+    loggedOutSuccessfully: false
 }
 
 export function LoginReducer(state = initialState, action) {
@@ -13,23 +11,30 @@ export function LoginReducer(state = initialState, action) {
             ...state,
             loginRequired: true
         }
-        case 'LOGGED_IN_SUCCESSFULLY': return {
-            ...state,
-            loggedInSuccessfully: true,
-            loginRequired: false,
-            token: action.payload.token,
-            user: action.payload.user
+        case 'LOGGED_IN_SUCCESSFULLY': {
+
+            sessionStorage.setItem("token", action.payload);
+
+            return {
+                ...state,
+                loggedInSuccessfully: true,
+                loginRequired: false
+            }
         }
         case 'LOGOUT_REQUIRED': return {
             ...state,
             logoutRequired: true
         }
-        case 'LOGGED_OUT_SUCCESSFULLY': return {
-            ...state,
-            logoutRequired: false,
-            loggedOutSuccessfully: true,
-            loggedInSuccessfully: false,
-            token: ''
+        case 'LOGGED_OUT_SUCCESSFULLY': {
+
+            sessionStorage.removeItem("token");
+
+            return {
+                ...state,
+                logoutRequired: false,
+                loggedOutSuccessfully: true,
+                loggedInSuccessfully: false
+            }
         }
         case 'LOGIN_CANCELED': return {
             ...state,
@@ -38,6 +43,11 @@ export function LoginReducer(state = initialState, action) {
         case 'LOGOUT_CANCELED': return {
             ...state,
             logoutRequired: false
+        }
+        case 'LOGIN_FAILED': return {
+            ...state,
+            loggedInSuccessfully: false,
+            loginRequired: true
         }
         default: return state
     }

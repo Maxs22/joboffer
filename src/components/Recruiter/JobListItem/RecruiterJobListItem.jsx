@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Container, Card, Badge } from 'react-bootstrap';
-import { viewingJobOfferDetails, editingJobOffer, deletingJobOffer,publishingJobOffer, closingJobOffer  } from '../../../redux/Recruiter/RecruiterActions';
+import { viewingJobOfferDetails, editingJobOffer  } from '../../../redux/Recruiter/RecruiterActions';
 import Moment from 'moment';
 import 'moment/locale/es';
 import { useHistory } from "react-router-dom";

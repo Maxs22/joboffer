@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import JobDetail from '../../../components/JobSeeker/JobDetail/JobDetail';
 import { useDispatch, useSelector } from 'react-redux';

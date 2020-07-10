@@ -14,9 +14,7 @@ export default function JobDetail() {
 
     const isJobDetailPostulating = useSelector(state => state.JobDetailState.jobDetailPostulating);
 
-    const token = useSelector(state => state.LoginState.token);
-
-    const user = useSelector(state => state.LoginState.user);
+    const token = sessionStorage.getItem("token");
 
     const floatLeft = {
         float: 'left'
@@ -86,15 +84,14 @@ export default function JobDetail() {
 
             const postulate = async () =>{
 
-                const data = await fetch('http://localhost:61256/api/person/applytojoboffer',{
+                const data = await fetch('http://localhost:61256/api/person/applytojoboffer/'+ jobToDisplay.id,{
                 method: 'POST',
                 mode: 'cors',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    'Authorization':' Bearer ' + token.token
-                  },
-                  body: JSON.stringify({JobOfferId: jobToDisplay.id, User: user })
+                    'Authorization':' Bearer ' + token
+                  }
                 })
                 .catch(function(error) {
                     dispatch(jobDetailPostulationError);

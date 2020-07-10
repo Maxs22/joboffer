@@ -47,12 +47,12 @@ export default function Login() {
 
                 if(typeof data !== "undefined" ){
 
-                    const token = await data.json();
+                    const response = await data.json();
 
-                    if (token !== ''){
+                    if (response !== ''){
                         setloginStatus('success');
                         setLoginMessage('Login Success');
-                        dispatch(loggedInSuccessfully(token, user));
+                        dispatch(loggedInSuccessfully(response.token));
                     }
                     else
                     {
