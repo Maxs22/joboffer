@@ -5,13 +5,15 @@ import { JobListReducer }  from '../redux/JobSeeker/JobList/JobListReducer';
 import { JobDetailReducer } from '../redux/JobSeeker/JobDetail/JobDetailReducer';
 import { RecruiterCommonReducer} from './Recruiter/Common/RecruiterCommonReducer';
 import { RecruiterJobListReducer } from '../redux/Recruiter/JobList/RecruiterJobListReducer';
+import { SharedReducer } from '../redux/Shared/SharedReducer';
 
 const rootReducer = combineReducers({
     LoginState: LoginReducer,
     JobListState:  JobListReducer,
     JobDetailState: JobDetailReducer,
     RecruiterCommonState: RecruiterCommonReducer,
-    RecruiterJobListState: RecruiterJobListReducer
+    RecruiterJobListState: RecruiterJobListReducer,
+    SharedState: SharedReducer
 })
 
 /*

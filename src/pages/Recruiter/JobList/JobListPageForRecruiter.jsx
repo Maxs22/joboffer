@@ -86,6 +86,7 @@ export default function RecruiterHomePage() {
             <Row>
                 <Col>
                     <h3>Mis avisos creados</h3>
+                    <hr/>
                     <RecruiterJobsListOption></RecruiterJobsListOption>
                     <hr/>
                 </Col>

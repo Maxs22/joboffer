@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Col, Form, Button, Card } from 'react-bootstrap';
 import { DatePickerInput } from 'rc-datepicker';
+import { useSelector, useDispatch } from 'react-redux';
 import TextInput from 'react-autocomplete-input';
+import { skillsLoaded } from '../../../redux/Recruiter/Common/RecruiterCommonActions';
 
 import 'react-autocomplete-input/dist/bundle.css';
 import 'rc-datepicker/lib/style.css'
@@ -17,21 +19,70 @@ export default function RecruiterEditCreateJobDetail(props) {
     const [workingDays, setWorkingDays] = useState(props.JobOffer.contractInformation.workingDays);
     const [contractInformation, setContractInformation] = useState(props.JobOffer.contractInformation.kindOfContract);
     const [zone, setZone] = useState(props.JobOffer.zone);
-    const [skills, setSkills] = useState(props.JobOffer.skillsRequired.map(s => s.skill.name));
+    const [language, setLanguage] = useState(props.JobOffer.language);
+    const [isLanguageMandatory, setIsLanguageMandatory] = useState(props.JobOffer.isLanguageMandatory);
+    const [languageLevel, setLanguageLevel] = useState(props.JobOffer.languageLevel);
+
+    const requiredSkills = useState(props.JobOffer.skillsRequired.map(s => s.skill.name));
+    const skillsOption = useSelector(state => state.RecruiterCommonState.skills);
+
+
+    let skillsToShow = requiredSkills[0].join(', ');
+
+    const dispatch = useDispatch();
+
+    const token = sessionStorage.getItem("token");
 
     const onChange = (jsDate, dateString) => {
         setDate(dateString);
     }
 
+    const languageLevenControls = isLanguageMandatory ? <div>
+        <Form.Check inline label="Basico" type='radio' id='basic' checked={languageLevel === 1} />
+        <Form.Check inline label="Intermedio" type='radio' id='medium' checked={languageLevel === 2} />
+        <Form.Check inline label="Avanzado" type='radio' id='advance' checked={languageLevel === 3} />
+    </div> : <div>
+            <Form.Check inline label="Basico" type='radio' id='basic' disabled />
+            <Form.Check inline label="Intermedio" type='radio' id='medium' disabled />
+            <Form.Check inline label="Avanzado" type='radio' id='advance' disabled />
+        </div>
+
+    useEffect(() => {
+
+        if (token !== null && skillsOption.length === 0) {
+
+            const fetchSkills = async () => {
+
+                const data = await fetch('http://localhost:61256/api/jobsoffer/getskills', {
+                    mode: 'cors',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'Authorization': ' Bearer ' + token
+                    }
+                })
+
+                if (typeof data !== "undefined" && data.status !== 401) {
+
+                    const json = await data.json();
+
+                    dispatch(skillsLoaded(json));
+                }
+            }
+            fetchSkills();
+        }
+
+    }, [dispatch, token, skillsOption]);
+
     return (
         <Container style={{ textAlign: "left" }}>
             <Form>
                 <Form.Group >
-                    <Form.Label>Título</Form.Label>
+                    <h5>Título</h5>
                     <Form.Control type="text" value={title} />
-                    <Form.Label>Descripción</Form.Label>
+                    <h5>Descripción</h5>
                     <Form.Control as="textarea" rows="6" value={description} />
-                    <Form.Label>Fecha de Publicacion</Form.Label>
+                    <h5>Fecha de Publicacion</h5>
                     <Col lg="2" style={{ paddingLeft: 0 }}>
                         <DatePickerInput
                             onChange={onChange}
@@ -67,13 +118,36 @@ export default function RecruiterEditCreateJobDetail(props) {
                         </Col>
                     </Card>
                     <br />
-                    <Form.Label>Conocimientos</Form.Label><br />
-                    <TextInput options={["Net", "C#", "javascript", "java"]} trigger='' Component='input' className='form-control' value={skills} />
+                    <Card>
+                        <Col>
+                            <br />
+                            <Form.Group controlId="skills">
+                                <h5>Conocimientos</h5>
+                                <TextInput matchAny="true" options={skillsOption.map(s => s.name)} trigger='' Component='input' className='form-control' spacer=',' defaultValue={skillsToShow} />
+                                <br />
+                                <Button variant="warning" type="submit">
+                                    Añadir tiempo de experiencia requerida a los conocimientos
+                                </Button>
+                                <Button variant="link">Ver ejemplos</Button>
+                                <br />
+                            </Form.Group>
+                        </Col>
+                    </Card>
                     <br />
-                    <Form.Check type="checkbox" label="Ingles Requerido" />
-                    <Form.Check inline label="Basico" type='radio' id='basic' disabled />
-                    <Form.Check inline label="Intermedio" type='radio' id='medium' disabled />
-                    <Form.Check inline label="Avanzado" type='radio' id='advance' disabled />
+                    <Card>
+                        <Col>
+                            <br />
+                            <Form.Group controlId="language">
+                                <h5>Idioma</h5>
+                                <Form.Control type="text" value={language} />
+                                <br />
+                                <Form.Check type="checkbox" label="Requerido" checked={isLanguageMandatory} />
+                                <br />
+                                {languageLevenControls}
+                            </Form.Group>
+                        </Col>
+                    </Card>
+
                 </Form.Group>
 
                 <Button variant="primary" type="submit">

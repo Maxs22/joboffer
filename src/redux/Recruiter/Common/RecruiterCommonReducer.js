@@ -9,7 +9,8 @@ const initialState = {
     jobOfferSuccessfullyDeleted: false,
     loadingJobOffers: false,
     jobOffersSuccessfullyLoaded: false,
-    jobList: []
+    jobList: [],
+    skills: []
 }
 
 export function RecruiterCommonReducer(state = initialState, action) {
@@ -87,6 +88,11 @@ export function RecruiterCommonReducer(state = initialState, action) {
         case 'REMOVE_JOBS_LOADED': return {
             ...state,
             jobList: []
+        }
+        case 'SKILLS_LOADED': return{
+            ...state,
+            skills: action.payload
+
         }
 
         default: return state

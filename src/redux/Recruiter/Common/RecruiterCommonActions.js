@@ -12,6 +12,13 @@ export function editingJobOffer(jobOfferId) {
     }
 }
 
+export function skillsLoaded(skills) {
+    return {
+        type: 'SKILLS_LOADED',
+        payload: skills
+    }
+}
+
 ////
 export function closingJobOffer(jobOfferId) {
     return {
