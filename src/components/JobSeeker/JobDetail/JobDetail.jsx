@@ -4,7 +4,7 @@ import Moment from 'moment';
 import { Tabs, Tab, Table, Button } from 'react-bootstrap';
 import { loginRequired } from '../../../redux/Account/Login/LoginActions';
 import { jobDetailPostulationError, jobDetailPostulationSuccess, jobDetailPostulating } from '../../../redux/JobSeeker/JobDetail/JobDetailActions';
-
+import postData from '../../../common/postData';
 
 export default function JobDetail() {
 
@@ -84,18 +84,7 @@ export default function JobDetail() {
 
             const postulate = async () =>{
 
-                const data = await fetch('http://localhost:61256/api/person/applytojoboffer/'+ jobToDisplay.id,{
-                method: 'POST',
-                mode: 'cors',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'Authorization':' Bearer ' + token
-                  }
-                })
-                .catch(function(error) {
-                    dispatch(jobDetailPostulationError);
-                });
+                const data = await postData('/person/applytojoboffer/'+ jobToDisplay.id,null,()=> dispatch(jobDetailPostulationError), token);
 
                 if(typeof data !== "undefined" ){
 

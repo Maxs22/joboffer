@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import logo from './job.jpg';
 import { loggedInSuccessfully, loginFailed } from '../../../redux/Account/Login/LoginActions';
 import { Container, Row, Col } from 'react-bootstrap';
+import postData from '../../../common/postData'
 import './Login.css';
 
 export default function Login() {
@@ -30,21 +31,9 @@ export default function Login() {
 
         const requestSignIn = async () =>{
 
-                const data = await fetch('http://localhost:61256/api/account/signin',{
-                method: 'POST',
-                mode: 'cors',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                  },
-                  body: JSON.stringify({email: user, password: password })
-                })
-                .catch(function(error) {
-                    dispatch(loginFailed);
-                    setLoginMessage('User or password invalid');
-                    setloginStatus('error');
-                });
 
+                const data = await postData('/account/signin',JSON.stringify({email: user, password: password }), ()=> dispatch(loginFailed));
+                
                 if(typeof data !== "undefined" ){
 
                     const response = await data.json();
@@ -60,6 +49,10 @@ export default function Login() {
                         setLoginMessage('User or password invalid');
                         setloginStatus('error');
                     }
+                }
+                else{
+                    setLoginMessage('User or password invalid');
+                    setloginStatus('error');
                 }
         }
 

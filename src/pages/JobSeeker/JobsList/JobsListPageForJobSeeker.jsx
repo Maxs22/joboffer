@@ -5,6 +5,7 @@ import JobsList from '../../../components//JobSeeker/JobsList/JobsList';
 import './JobsListPageForJobSeeker.css';
 import { jobListLoading, jobListLoaded, jobListLoadingError } from '../../../redux/JobSeeker/JobList/JobListActions';
 import { useDispatch, useSelector } from 'react-redux';
+import getData from '../../../common/getData';
 import Loader from 'react-loader-spinner'
 
 export default function JobsListPageForJobSeeker() {
@@ -23,12 +24,7 @@ export default function JobsListPageForJobSeeker() {
 
                 dispatch(jobListLoading);
 
-                const data = await fetch('http://localhost:61256/api/jobsoffer',{
-                mode: 'cors'
-                })
-                .catch(function(error) {
-                    dispatch(jobListLoadingError);
-                });
+                const data = await getData('/jobsoffer', ()=> dispatch(jobListLoadingError));
 
                 if(typeof data !== "undefined" ){
 

@@ -10,6 +10,7 @@ import RecruiterHomePage from '../../../pages/Recruiter/JobList/JobListPageForRe
 import EditJobOfferPage from '../../../pages/Recruiter/JobDetail/EditJobOfferPage';
 import ViewJobOfferDetailPage from '../../../pages/Recruiter/JobDetail/ViewJobOfferDetailPage';
 import CreateJobOfferPage from '../../../pages/Recruiter/JobDetail/CreateJobOfferPage';
+import postData from '../../../common/postData';
 
 import { loggedInSuccessfully, loginFailed, loggedOutSuccessfully } from '../../../redux/Account/Login/LoginActions'
 
@@ -29,19 +30,8 @@ export default function DefaultHome(props) {
 
                 const validateToken = async () => {
 
-                    const data = await fetch('http://localhost:61256/api/account/validatetoken', {
-                        method: 'POST',
-                        mode: 'cors',
-                        headers: {
-                            'Accept': 'application/json',
-                            'Content-Type': 'application/json',
-                            'Authorization': ' Bearer ' + token
-                        }
-                    })
-                        .catch(function (error) {
-                            dispatch(loginFailed);
-                        });
-
+                    const data = await postData('/account/validatetoken',null, ()=> dispatch(loginFailed), token);
+                    
                     if (typeof data !== "undefined") {
 
                         if (data.status === 200) {

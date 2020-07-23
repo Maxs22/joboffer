@@ -4,6 +4,7 @@ import { DatePickerInput } from 'rc-datepicker';
 import { useSelector, useDispatch } from 'react-redux';
 import TextInput from 'react-autocomplete-input';
 import { skillsLoaded } from '../../../redux/Recruiter/Common/RecruiterCommonActions';
+import getData from '../../../common/getData';
 
 import 'react-autocomplete-input/dist/bundle.css';
 import 'rc-datepicker/lib/style.css'
@@ -53,14 +54,7 @@ export default function RecruiterEditCreateJobDetail(props) {
 
             const fetchSkills = async () => {
 
-                const data = await fetch('http://localhost:61256/api/jobsoffer/getskills', {
-                    mode: 'cors',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json',
-                        'Authorization': ' Bearer ' + token
-                    }
-                })
+                const data = await getData('/jobsoffer/getskills', null, token);
 
                 if (typeof data !== "undefined" && data.status !== 401) {
 

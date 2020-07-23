@@ -6,6 +6,7 @@ import { loadingJobOffers, failureLoadingJobOffer, jobOffersSuccessfullyLoaded, 
 import { loginRequired } from '../../../redux/Account/Login/LoginActions';
 import RecruiterJobsListOption from '../../../components/Recruiter/JobListOptions/RecruiterJobsListOption';
 import Loader from 'react-loader-spinner'
+import getData from '../../../common/getData';
 
 export default function RecruiterHomePage() {
 
@@ -34,17 +35,7 @@ export default function RecruiterHomePage() {
 
                     dispatch(loadingJobOffers);
 
-                    const data = await fetch('http://localhost:61256/api/recruiter/getjoboffers', {
-                        mode: 'cors',
-                        headers: {
-                            'Accept': 'application/json',
-                            'Content-Type': 'application/json',
-                            'Authorization': ' Bearer ' + token
-                        }
-                    })
-                        .catch(function (error) {
-                            dispatch(failureLoadingJobOffer);
-                        });
+                    const data = await getData('/recruiter/getjoboffers',()=> dispatch(failureLoadingJobOffer), token );
 
                     if (typeof data !== "undefined" && data.status !== 401) {
 

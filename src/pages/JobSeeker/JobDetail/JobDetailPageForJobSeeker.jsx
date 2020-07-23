@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams} from "react-router";
 import { jobDetailLoadingError, jobDetailLoaded, jobDetailLoading } from '../../../redux/JobSeeker/JobDetail/JobDetailActions';
 import Loader from 'react-loader-spinner'
+import getData from '../../../common/getData';
 
 export default function JobDetailPageJobSeeker() {
 
@@ -32,13 +33,8 @@ export default function JobDetailPageJobSeeker() {
 
         const fetchJob = async () =>{
 
-            const data = await fetch('http://localhost:61256/api/jobsoffer/'+param.id,{
-                mode: 'cors'
-            })
-            .catch(function(error) {
-                dispatch(jobDetailLoadingError);
-              });
-
+            const data = await getData('/jobsoffer/'+param.id, ()=> dispatch(jobDetailLoadingError) );
+            
             if(typeof data !== "undefined" ){
 
                 const json = await data.json();
