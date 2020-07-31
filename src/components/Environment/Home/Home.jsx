@@ -14,7 +14,7 @@ import postData from '../../../common/postData';
 
 import { loggedInSuccessfully, loginFailed, loggedOutSuccessfully } from '../../../redux/Account/Login/LoginActions'
 
-export default function DefaultHome(props) {
+export default function Home() {
 
     const dispatch = useDispatch();
 
@@ -31,7 +31,7 @@ export default function DefaultHome(props) {
                 const validateToken = async () => {
 
                     const data = await postData('/account/validatetoken',null, ()=> dispatch(loginFailed), token);
-                    
+
                     if (typeof data !== "undefined") {
 
                         if (data.status === 200) {

@@ -1,47 +1,37 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Container, Col, Form, Button, Card } from 'react-bootstrap';
 import { DatePickerInput } from 'rc-datepicker';
 import { useSelector, useDispatch } from 'react-redux';
 import TextInput from 'react-autocomplete-input';
 import { skillsLoaded } from '../../../redux/Recruiter/Common/RecruiterCommonActions';
 import getData from '../../../common/getData';
+import { useForm, Controller } from "react-hook-form";
 
 import 'react-autocomplete-input/dist/bundle.css';
 import 'rc-datepicker/lib/style.css'
 
 export default function RecruiterEditCreateJobDetail(props) {
 
-    const [date, setDate] = useState(props.JobOffer.date);
-    const [title, setTitle] = useState(props.JobOffer.title);
-    const [description, setDescription] = useState(props.JobOffer.description);
-    const [companyName, setCompanyName] = useState(props.JobOffer.company.name);
-    const [activity, setActivity] = useState(props.JobOffer.company.activity);
-    const [startingFrom, setStartingFrom] = useState(props.JobOffer.contractInformation.startingFrom);
-    const [workingDays, setWorkingDays] = useState(props.JobOffer.contractInformation.workingDays);
-    const [contractInformation, setContractInformation] = useState(props.JobOffer.contractInformation.kindOfContract);
-    const [zone, setZone] = useState(props.JobOffer.zone);
-    const [language, setLanguage] = useState(props.JobOffer.language);
-    const [isLanguageMandatory, setIsLanguageMandatory] = useState(props.JobOffer.isLanguageMandatory);
-    const [languageLevel, setLanguageLevel] = useState(props.JobOffer.languageLevel);
+    const { register, handleSubmit, control, watch } = useForm();
 
-    const requiredSkills = useState(props.JobOffer.skillsRequired.map(s => s.skill.name));
+    const languageLevel = watch("languageLevelControl", props.JobOffer.languageLevel);
+    const isLanguageMandatory = watch("isLanguageMandatoryControl", props.JobOffer.isLanguageMandatory);
+
+    const requiredSkills = props.JobOffer.skillsRequired.map(s => s.skill.name);
     const skillsOption = useSelector(state => state.RecruiterCommonState.skills);
 
+    const onSubmit = data => console.log(data);
 
-    let skillsToShow = requiredSkills[0].join(', ');
+    let skillsToShow = requiredSkills.join(', ');
 
     const dispatch = useDispatch();
 
     const token = sessionStorage.getItem("token");
 
-    const onChange = (jsDate, dateString) => {
-        setDate(dateString);
-    }
-
     const languageLevenControls = isLanguageMandatory ? <div>
-        <Form.Check inline label="Basico" type='radio' id='basic' checked={languageLevel === 1} />
-        <Form.Check inline label="Intermedio" type='radio' id='medium' checked={languageLevel === 2} />
-        <Form.Check inline label="Avanzado" type='radio' id='advance' checked={languageLevel === 3} />
+        <Form.Check inline label="Basico" type='radio' id='basic' name="languageLevelControl" ref={register} value={1} defaultChecked={ languageLevel === 1} />
+        <Form.Check inline label="Intermedio" type='radio' id='medium' name="languageLevelControl" ref={register} value={2} defaultChecked={languageLevel === 2}/>
+        <Form.Check inline label="Avanzado" type='radio' id='advance' name="languageLevelControl" ref={register} value={3} defaultChecked={languageLevel === 3}/>
     </div> : <div>
             <Form.Check inline label="Basico" type='radio' id='basic' disabled />
             <Form.Check inline label="Intermedio" type='radio' id='medium' disabled />
@@ -70,29 +60,25 @@ export default function RecruiterEditCreateJobDetail(props) {
 
     return (
         <Container style={{ textAlign: "left" }}>
-            <Form>
+            <Form onSubmit={handleSubmit(onSubmit)}>
                 <Form.Group >
                     <h5>Título</h5>
-                    <Form.Control type="text" value={title} />
+                    <Form.Control type="text" name="title" ref={register} defaultValue={props.JobOffer.title} />
                     <h5>Descripción</h5>
-                    <Form.Control as="textarea" rows="6" value={description} />
+                    <Form.Control as="textarea" name="description" rows="6" ref={register} defaultValue={props.JobOffer.description} />
                     <h5>Fecha de Publicacion</h5>
                     <Col lg="2" style={{ paddingLeft: 0 }}>
-                        <DatePickerInput
-                            onChange={onChange}
-                            value={date}
-                            className='my-custom-datepicker-component'
-                        />
+                        <Controller as={DatePickerInput} name="date" control={control} defaultValue={props.JobOffer.date} className='my-custom-datepicker-component' />
                     </Col>
                     <Card>
                         <Col>
                             <br />
                             <h5>Empresa empleadora</h5>
                             <Form.Label>Nombre</Form.Label><br />
-                            <TextInput options={["apple", "apricot", "banana", "carrot"]} trigger='' Component='input' className='form-control' value={companyName} />
+                            <Controller as={TextInput} name="companyName" options={["apple", "apricot", "banana", "carrot"]} trigger='' Component='input' control={control} className='form-control' defaultValue={props.JobOffer.company.name} />
                             <br />
                             <Form.Label>Rubro</Form.Label>
-                            <Form.Control type="text" disabled value={activity} />
+                            <Form.Control type="text" disabled defaultValue={props.JobOffer.company.activity} name="companyActivity" ref={register} />
                             <br />
                         </Col>
                     </Card>
@@ -101,13 +87,13 @@ export default function RecruiterEditCreateJobDetail(props) {
                             <br />
                             <h5>Información contractual</h5>
                             <Form.Label>Para iniciar en</Form.Label><br />
-                            <Form.Control type="text" value={startingFrom} />
+                            <Form.Control type="text" ref={register} name="startingFrom" defaultValue={props.JobOffer.contractInformation.startingFrom} />
                             <Form.Label>Días laborales</Form.Label>
-                            <Form.Control type="text" value={workingDays} />
+                            <Form.Control type="text" ref={register} name="workingDays" defaultValue={props.JobOffer.contractInformation.workingDays} />
                             <Form.Label>Tipo de contratación</Form.Label>
-                            <Form.Control type="text" value={contractInformation} />
+                            <Form.Control type="text" ref={register} name="kindOfContract" defaultValue={props.JobOffer.contractInformation.kindOfContract} />
                             <Form.Label>Zona de trabajo</Form.Label>
-                            <Form.Control type="text" value={zone} />
+                            <Form.Control type="text" ref={register} name="zone" defaultValue={props.JobOffer.zone} />
                             <br />
                         </Col>
                     </Card>
@@ -117,8 +103,7 @@ export default function RecruiterEditCreateJobDetail(props) {
                             <br />
                             <Form.Group controlId="skills">
                                 <h5>Conocimientos</h5>
-                                <TextInput matchAny="true" options={skillsOption.map(s => s.name)} trigger='' Component='input' className='form-control' spacer=',' defaultValue={skillsToShow} />
-                                <br />
+                                <Controller as={TextInput} control={control} matchAny="true" name="skills" options={skillsOption.map(s => s.name)} trigger='' Component='input' className='form-control' spacer=',' defaultValue={skillsToShow} />                                <br />
                                 <Button variant="warning" type="submit">
                                     Añadir tiempo de experiencia requerida a los conocimientos
                                 </Button>
@@ -133,20 +118,16 @@ export default function RecruiterEditCreateJobDetail(props) {
                             <br />
                             <Form.Group controlId="language">
                                 <h5>Idioma</h5>
-                                <Form.Control type="text" value={language} />
+                                <Form.Control type="text" ref={register} name="language" defaultValue={props.JobOffer.language} />
                                 <br />
-                                <Form.Check type="checkbox" label="Requerido" checked={isLanguageMandatory} />
+                                <Form.Check type="checkbox" label="Requerido" ref={register} name="isLanguageMandatoryControl" defaultChecked={isLanguageMandatory} />
                                 <br />
                                 {languageLevenControls}
                             </Form.Group>
                         </Col>
                     </Card>
-
                 </Form.Group>
-
-                <Button variant="primary" type="submit">
-                    Grabar
-                </Button>
+                <input variant="primary" type="submit" value="Grabar" />
                 <br />
             </Form>
         </Container>
