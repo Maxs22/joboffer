@@ -18,7 +18,7 @@ export default function RecruiterEditCreateJobDetail(props) {
     const isLanguageMandatory = watch("isLanguageMandatoryControl", props.JobOffer.isLanguageMandatory);
 
     const requiredSkills = props.JobOffer.skillsRequired.map(s => s.skill.name);
-    const skillsOption = useSelector(state => state.RecruiterCommonState.skills);
+    const skillsAvailable = useSelector(state => state.RecruiterCommonState.skills);
 
     const onSubmit = data => console.log(data);
 
@@ -40,7 +40,7 @@ export default function RecruiterEditCreateJobDetail(props) {
 
     useEffect(() => {
 
-        if (token !== null && skillsOption.length === 0) {
+        if (token !== null && skillsAvailable.length === 0) {
 
             const fetchSkills = async () => {
 
@@ -56,7 +56,7 @@ export default function RecruiterEditCreateJobDetail(props) {
             fetchSkills();
         }
 
-    }, [dispatch, token, skillsOption]);
+    }, [dispatch, token, skillsAvailable]);
 
     return (
         <Container style={{ textAlign: "left" }}>
@@ -103,7 +103,7 @@ export default function RecruiterEditCreateJobDetail(props) {
                             <br />
                             <Form.Group controlId="skills">
                                 <h5>Conocimientos</h5>
-                                <Controller as={TextInput} control={control} matchAny="true" name="skills" options={skillsOption.map(s => s.name)} trigger='' Component='input' className='form-control' spacer=',' defaultValue={skillsToShow} />                                <br />
+                                <Controller as={TextInput} control={control} matchAny="true" name="skills" options={skillsAvailable.map(s => s.name)} trigger='' Component='input' className='form-control' spacer=',' defaultValue={skillsToShow} />                                <br />
                                 <Button variant="warning" type="submit">
                                     Añadir tiempo de experiencia requerida a los conocimientos
                                 </Button>

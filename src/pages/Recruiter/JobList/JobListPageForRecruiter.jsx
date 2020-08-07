@@ -1,64 +1,16 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import RecruiterJobList from '../../../components/Recruiter/JobList/RecruiterJobList';
-import { loadingJobOffers, failureLoadingJobOffer, jobOffersSuccessfullyLoaded, removeJobsLoaded } from '../../../redux/Recruiter/Common/RecruiterCommonActions';
-import { loginRequired } from '../../../redux/Account/Login/LoginActions';
 import RecruiterJobsListOption from '../../../components/Recruiter/JobListOptions/RecruiterJobsListOption';
 import Loader from 'react-loader-spinner'
-import getData from '../../../common/getData';
+import { useFetchJobOffersForRecruiter  } from '../../../services/JobOfferService'
 
 export default function RecruiterHomePage() {
 
     const showLoadingSpinner = useSelector(state => state.RecruiterCommonState.loadingJobOffers);
-    const jobOffersLoadingError = useSelector(state => state.JobListState.jobOffersSuccessfullyLoaded);
-    const isLoggedInSuccessfully = useSelector(state => state.LoginState.loggedInSuccessfully);
-    const token = sessionStorage.getItem("token");
-    let jobs = useSelector(state => state.RecruiterCommonState.jobList);
 
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-
-        if (!isLoggedInSuccessfully) {
-
-            if (jobs.length > 0) {
-                dispatch(removeJobsLoaded);
-            }
-
-            dispatch(loginRequired);
-        }
-        else {
-            const fetchJobs = async () => {
-
-                if ((jobs.length === 0) && !jobOffersLoadingError) {
-
-                    dispatch(loadingJobOffers);
-
-                    const data = await getData('/recruiter/getjoboffers',()=> dispatch(failureLoadingJobOffer), token );
-
-                    if (typeof data !== "undefined" && data.status !== 401) {
-
-                        const json = await data.json();
-
-                        dispatch(jobOffersSuccessfullyLoaded(json));
-                    }
-                    else {
-                        dispatch(failureLoadingJobOffer);
-                        dispatch(loginRequired);
-                    }
-                }
-                else {
-                    dispatch(jobOffersSuccessfullyLoaded(jobs));
-                }
-            }
-
-            fetchJobs();
-        }
-
-    }, [isLoggedInSuccessfully, dispatch, jobOffersLoadingError, jobs, token]);
-
-
+    useFetchJobOffersForRecruiter();
 
     const spinner = showLoadingSpinner && (
         <span>

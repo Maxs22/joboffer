@@ -2,10 +2,20 @@ import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import RecruiterEditCreateJobDetail  from '../../../components/Recruiter/JobDetail/RecruiterEditCreateJobDetail';
+import { useFetchJobOffersForRecruiter } from '../../../services/JobOfferService';
+import { useParams} from "react-router";
 
 export default function EditJobOfferPage() {
 
-    const selectedJobOfferToEdit = useSelector(state => state.RecruiterCommonState.editingJobOfferId);
+    let param = useParams();
+
+    useFetchJobOffersForRecruiter();
+
+    let selectedJobOfferToEdit = useSelector(state => state.RecruiterCommonState.editingJobOfferId);
+
+    if(selectedJobOfferToEdit ===""){
+        selectedJobOfferToEdit = param.id;
+    }
 
     const jobs = useSelector(state => state.RecruiterCommonState.jobList);
 
