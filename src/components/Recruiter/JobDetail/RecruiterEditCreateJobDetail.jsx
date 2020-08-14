@@ -44,7 +44,7 @@ export default function RecruiterEditCreateJobDetail(props) {
 
             const fetchSkills = async () => {
 
-                const data = await getData('/jobsoffer/getskills', null, token);
+                const data = await getData('/joboffers/getskills', null, token);
 
                 if (typeof data !== "undefined" && data.status !== 401) {
 

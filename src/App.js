@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import { Provider } from 'react-redux'
 import store from './redux/store'
-import Home from './components/Environment/Home/Home';
+import Home from './components/environment/home/Home';
 import { BrowserRouter as Router } from "react-router-dom";
 
 

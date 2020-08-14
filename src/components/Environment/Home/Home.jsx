@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import NavBar from '../NavBar/NavBar';
+import NavBar from '../navBar/NavBar';
 import './Home.css';
 import { Route, Switch } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';

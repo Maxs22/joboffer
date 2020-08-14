@@ -33,7 +33,7 @@ export default function JobDetailPageJobSeeker() {
 
         const fetchJob = async () =>{
 
-            const data = await getData('/jobsoffer/'+param.id, ()=> dispatch(jobDetailLoadingError) );
+            const data = await getData('/joboffers/'+param.id, ()=> dispatch(jobDetailLoadingError) );
             
             if(typeof data !== "undefined" ){
 

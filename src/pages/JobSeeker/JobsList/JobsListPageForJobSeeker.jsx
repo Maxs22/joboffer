@@ -24,7 +24,7 @@ export default function JobsListPageForJobSeeker() {
 
                 dispatch(jobListLoading);
 
-                const data = await getData('/jobsoffer', ()=> dispatch(jobListLoadingError));
+                const data = await getData('/joboffers', ()=> dispatch(jobListLoadingError));
 
                 if(typeof data !== "undefined" ){
 
