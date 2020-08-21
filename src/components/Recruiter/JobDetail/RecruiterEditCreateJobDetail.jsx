@@ -4,7 +4,7 @@ import { DatePickerInput } from 'rc-datepicker';
 import { useSelector, useDispatch } from 'react-redux';
 import TextInput from 'react-autocomplete-input';
 import { skillsLoaded } from '../../../redux/Recruiter/Common/RecruiterCommonActions';
-import getData from '../../../common/getData';
+import getData from '../../../repositories/common/getData';
 import { useForm, Controller } from "react-hook-form";
 
 import 'react-autocomplete-input/dist/bundle.css';

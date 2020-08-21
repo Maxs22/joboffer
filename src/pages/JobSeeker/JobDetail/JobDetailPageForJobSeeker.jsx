@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams} from "react-router";
 import { jobDetailLoadingError, jobDetailLoaded, jobDetailLoading } from '../../../redux/JobSeeker/JobDetail/JobDetailActions';
 import Loader from 'react-loader-spinner'
-import getData from '../../../common/getData';
+import getData from '../../../repositories/common/getData';
 
 export default function JobDetailPageJobSeeker() {
 

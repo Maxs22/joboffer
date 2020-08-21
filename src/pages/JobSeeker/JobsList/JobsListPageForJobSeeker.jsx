@@ -5,7 +5,7 @@ import JobsList from '../../../components//JobSeeker/JobsList/JobsList';
 import './JobsListPageForJobSeeker.css';
 import { jobListLoading, jobListLoaded, jobListLoadingError } from '../../../redux/JobSeeker/JobList/JobListActions';
 import { useDispatch, useSelector } from 'react-redux';
-import getData from '../../../common/getData';
+import getData from '../../../repositories/common/getData';
 import Loader from 'react-loader-spinner'
 
 export default function JobsListPageForJobSeeker() {

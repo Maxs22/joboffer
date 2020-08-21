@@ -10,7 +10,7 @@ import RecruiterHomePage from '../../../pages/Recruiter/JobList/JobListPageForRe
 import EditJobOfferPage from '../../../pages/Recruiter/JobDetail/EditJobOfferPage';
 import ViewJobOfferDetailPage from '../../../pages/Recruiter/JobDetail/ViewJobOfferDetailPage';
 import CreateJobOfferPage from '../../../pages/Recruiter/JobDetail/CreateJobOfferPage';
-import postData from '../../../common/postData';
+import postData from '../../../repositories/common/postData';
 
 import { loggedInSuccessfully, loginFailed, loggedOutSuccessfully } from '../../../redux/Account/Login/LoginActions'
 

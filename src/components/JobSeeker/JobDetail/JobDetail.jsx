@@ -4,7 +4,7 @@ import Moment from 'moment';
 import { Tabs, Tab, Table, Button } from 'react-bootstrap';
 import { loginRequired } from '../../../redux/Account/Login/LoginActions';
 import { jobDetailPostulationError, jobDetailPostulationSuccess, jobDetailPostulating } from '../../../redux/JobSeeker/JobDetail/JobDetailActions';
-import postData from '../../../common/postData';
+import postData from '../../../repositories/common/postData';
 
 export default function JobDetail() {
 
