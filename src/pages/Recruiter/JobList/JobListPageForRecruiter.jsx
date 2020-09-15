@@ -3,6 +3,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import RecruiterJobList from '../../../components/Recruiter/JobList/RecruiterJobList';
 import JobsListOption from '../../../components/JobSeeker/JobsListOptions/JobsListOption'
+import JobListHeader from '../../../components/JobSeeker/JobListHeader/JobListHeader'
 import Loader from 'react-loader-spinner'
 import { useFetchJobOffersForRecruiter  } from '../../../services/useFetchJobOffersForRecruiter'
 
@@ -28,8 +29,7 @@ export default function RecruiterHomePage() {
         <Container>
             <Row>
                 <Col>
-                    <h3>Mis avisos creados</h3>
-                    <hr/>
+                    <JobListHeader/>
                     <JobsListOption IsRecruiter={true}></JobsListOption>
                     <hr/>
                 </Col>

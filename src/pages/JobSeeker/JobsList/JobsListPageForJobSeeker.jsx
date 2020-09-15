@@ -3,6 +3,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import JobsListOption from '../../../components//JobSeeker/JobsListOptions/JobsListOption';
 import JobsList from '../../../components//JobSeeker/JobsList/JobsList';
+import JobListHeader from '../../../components/JobSeeker/JobListHeader/JobListHeader'
 import './JobsListPageForJobSeeker.css';
 import { useFetchJobOffers } from '../../../services/useFetchJobOffers';
 
@@ -24,19 +25,20 @@ export default function JobsListPageForJobSeeker() {
             />
             <p>Cargando...</p>
         </span>
-       );
+    );
 
     return (
         <Container>
             <Row>
                 <Col>
+                    <JobListHeader/>
                     <JobsListOption IsRecruiter={false} ></JobsListOption>
                 </Col>
             </Row>
             <Row>
                 <Col>
                     <hr className="headerLineSeparator" />
-                    { spinner }
+                    {spinner}
                     <JobsList></JobsList>
                 </Col>
             </Row>
