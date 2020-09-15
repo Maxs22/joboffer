@@ -19,11 +19,11 @@ export const filterByTypeOfCompany = {
 }
 
 export const sortByPublicationDate = {
-    type: 'SORTED_BY_PUBLICACION_DATE'
+    type: 'ORDERING_BY_PUBLICACION_DATE'
 }
 
 export const sortByLocation = {
-    type: 'SORTED_BY_LOCATION'
+    type: 'ORDERING_BY_LOCATION'
 }
 
 export const jobListLoading = {

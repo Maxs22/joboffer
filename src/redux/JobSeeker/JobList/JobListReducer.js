@@ -1,6 +1,6 @@
 const initialState = {
     filterApplied: false,
-    sortApplied: false,
+    jobListOrderingBy: 'Fecha de publicación',
     filterValue: [],
     jobListLoading: false,
     jobListLoaded: false,
@@ -11,13 +11,13 @@ const initialState = {
 
 export function JobListReducer(state = initialState, action) {
     switch (action.type) {
-        case 'SORTED_BY_PUBLICACION_DATE': return {
+        case 'ORDERING_BY_PUBLICACION_DATE': return {
             ...state,
-            sortApplied: true
+            jobListOrderingBy: 'Fecha de publicación'
         };
-        case 'SORTED_BY_LOCATION': return {
+        case 'ORDERING_BY_LOCATION': return {
             ...state,
-            sortApplied: true
+            jobListOrderingBy: 'Lugar de trabajo'
         }
         case 'FILTERED_BY_TYPE_OF_COMPANY': return {
             ...state,
