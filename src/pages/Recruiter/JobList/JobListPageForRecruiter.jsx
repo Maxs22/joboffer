@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import RecruiterJobList from '../../../components/Recruiter/JobList/RecruiterJobList';
 import RecruiterJobsListOption from '../../../components/Recruiter/JobListOptions/RecruiterJobsListOption';
 import Loader from 'react-loader-spinner'
-import { useFetchJobOffersForRecruiter  } from '../../../services/JobOfferService'
+import { useFetchJobOffersForRecruiter  } from '../../../services/useFetchJobOffersForRecruiter'
 
 export default function RecruiterHomePage() {
 

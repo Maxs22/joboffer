@@ -1,44 +1,18 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
 import JobsListOption from '../../../components//JobSeeker/JobsListOptions/JobsListOpton';
 import JobsList from '../../../components//JobSeeker/JobsList/JobsList';
 import './JobsListPageForJobSeeker.css';
-import { jobListLoading, jobListLoaded, jobListLoadingError } from '../../../redux/JobSeeker/JobList/JobListActions';
-import { useDispatch, useSelector } from 'react-redux';
-import getData from '../../../repositories/common/getData';
+import { useFetchJobOffers } from '../../../services/useFetchJobOffers';
+
 import Loader from 'react-loader-spinner'
 
 export default function JobsListPageForJobSeeker() {
 
-    const dispatch = useDispatch();
+    useFetchJobOffers();
 
     const showLoadingSpinner = useSelector(state => state.JobListState.jobListLoading);
-    const jobOfferLoadingError = useSelector(state => state.JobListState.jobListLoadingError);
-    let jobs = useSelector(state => state.JobListState.jobListObjects);
-
-    useEffect(()=>{
-
-        const fetchJobs = async () =>{
-
-            if ((jobs.length === 0) && !jobOfferLoadingError){
-
-                dispatch(jobListLoading);
-
-                const data = await getData('/joboffers', ()=> dispatch(jobListLoadingError));
-
-                if(typeof data !== "undefined" ){
-
-                    const json = await data.json();
-
-                    dispatch(jobListLoaded(json));
-                }
-            }
-        }
-
-        fetchJobs();
-
-    }, [dispatch, jobs, jobOfferLoadingError]);
-
 
     const spinner = showLoadingSpinner && (
         <span>

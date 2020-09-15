@@ -44,7 +44,7 @@ export default function RecruiterEditCreateJobDetail(props) {
 
             const fetchSkills = async () => {
 
-                const data = await getData('/joboffers/getskills', null, token);
+                const data = await getData('/skill/getall', null, token);
 
                 if (typeof data !== "undefined" && data.status !== 401) {
 
@@ -105,7 +105,7 @@ export default function RecruiterEditCreateJobDetail(props) {
                                 <h5>Conocimientos</h5>
                                 <Controller as={TextInput} control={control} matchAny="true" name="skills" options={skillsAvailable.map(s => s.name)} trigger='' Component='input' className='form-control' spacer=',' defaultValue={skillsToShow} />                                <br />
                                 <Button variant="warning" type="submit">
-                                    Añadir tiempo de experiencia requerida a los conocimientos
+                                    Añadir tiempo de experiencia a los conocimientos
                                 </Button>
                                 <Button variant="link">Ver ejemplos</Button>
                                 <br />

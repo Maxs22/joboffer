@@ -41,9 +41,6 @@ export function useFetchJobOffersForRecruiter() {
                         dispatch(loginRequired);
                     }
                 }
-                else {
-                    dispatch(jobOffersSuccessfullyLoaded(jobs));
-                }
             }
 
             fetchJobs();
