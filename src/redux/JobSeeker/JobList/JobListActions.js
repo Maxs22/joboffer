@@ -47,3 +47,13 @@ export function jobSelected(jobId){
         payload: jobId
     }
 }
+
+export const filterByCompanyName = {
+    type: 'FILTERED_BY_COMPANY_NAME',
+    payload: []
+}
+
+export const filterByState = {
+    type: 'FILTERED_BY_JOB_OFFER_STATE',
+    payload: []
+}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
-import JobsListOption from '../../../components//JobSeeker/JobsListOptions/JobsListOpton';
+import JobsListOption from '../../../components//JobSeeker/JobsListOptions/JobsListOption';
 import JobsList from '../../../components//JobSeeker/JobsList/JobsList';
 import './JobsListPageForJobSeeker.css';
 import { useFetchJobOffers } from '../../../services/useFetchJobOffers';
@@ -30,7 +30,7 @@ export default function JobsListPageForJobSeeker() {
         <Container>
             <Row>
                 <Col>
-                    <JobsListOption></JobsListOption>
+                    <JobsListOption IsRecruiter={false} ></JobsListOption>
                 </Col>
             </Row>
             <Row>
