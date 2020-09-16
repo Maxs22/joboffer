@@ -4,10 +4,10 @@ import NavBar from '../navBar/NavBar';
 import './Home.css';
 import { Route, Switch } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import JobsListPageJobSeeker from '../../../pages/JobSeeker/JobsList/JobsListPageForJobSeeker';
-import JobDetailPageForJobSeeker from '../../../pages/JobSeeker/JobDetail/JobDetailPageForJobSeeker';
-import EditJobOfferPage from '../../../pages/Recruiter/EditJobOfferPage';
-import CreateJobOfferPage from '../../../pages/Recruiter/CreateJobOfferPage';
+import JobsListPageJobSeeker from '../../../pages/jobSeeker/jobsList/jobsListPageForJobSeeker';
+import JobDetailPageForJobSeeker from '../../../pages/jobSeeker/jobDetail/jobDetailPageForJobSeeker';
+import EditJobOfferPage from '../../../pages/recruiter/editJobOfferPage';
+import CreateJobOfferPage from '../../../pages/recruiter/createJobOfferPage';
 import postData from '../../../repositories/common/postData';
 
 import { loggedInSuccessfully, loginFailed, loggedOutSuccessfully } from '../../../redux/Account/LoginActions'

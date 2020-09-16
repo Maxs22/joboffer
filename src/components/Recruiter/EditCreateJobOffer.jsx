@@ -3,12 +3,13 @@ import { Container, Col, Form, Button, Card } from 'react-bootstrap';
 import { DatePickerInput } from 'rc-datepicker';
 import { useSelector, useDispatch } from 'react-redux';
 import TextInput from 'react-autocomplete-input';
-import { skillsLoaded } from '../../../redux/SkillManager/SkillManagerActions';
-import getData from '../../../repositories/common/getData';
+import { skillsLoaded } from '../../redux/SkillManager/SkillManagerActions';
+import getData from '../../repositories/common/getData';
 import { useForm, Controller } from "react-hook-form";
 
-import 'react-autocomplete-input/dist/bundle.css';
-import 'rc-datepicker/lib/style.css'
+
+import '../../../node_modules/react-autocomplete-input/dist/bundle.css';
+import '../../../node_modules/rc-datepicker/lib/style.css'
 
 export default function RecruiterEditCreateJobDetail(props) {
 
@@ -18,7 +19,7 @@ export default function RecruiterEditCreateJobDetail(props) {
     const isLanguageMandatory = watch("isLanguageMandatoryControl", props.JobOffer.isLanguageMandatory);
 
     const requiredSkills = props.JobOffer.skillsRequired.map(s => s.skill.name);
-    const skillsAvailable = useSelector(state => state.RecruiterCommonState.skills);
+    const skillsAvailable = useSelector(state => state.SkillManagerState.skills);
 
     const onSubmit = data => console.log(data);
 

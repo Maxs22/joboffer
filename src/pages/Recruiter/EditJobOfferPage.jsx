@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
-import RecruiterEditCreateJobDetail  from '../../components/Recruiter/JobDetail/RecruiterEditCreateJobDetail';
+import EditCreateJobOffer  from '../../components/Recruiter/EditCreateJobOffer';
 import { useFetchJobOffersForRecruiter } from '../../services/useFetchJobOffersForRecruiter';
 import { useParams} from "react-router";
 
@@ -31,7 +31,7 @@ export default function EditJobOfferPage() {
             </Row>
             <Row>
                 <Col lg="10">
-                    <RecruiterEditCreateJobDetail JobOffer = {jobToEdit.jobOffer}></RecruiterEditCreateJobDetail>
+                    <EditCreateJobOffer JobOffer = {jobToEdit.jobOffer}></EditCreateJobOffer>
                 </Col>
             </Row>
         </Container>

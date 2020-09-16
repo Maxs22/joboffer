@@ -9,7 +9,7 @@ const rootReducer = combineReducers({
     LoginState: LoginReducer,
     JobListState:  JobListReducer,
     JobDetailState: JobDetailReducer,
-    SkillManagerReducer: SkillManagerReducer
+    SkillManagerState: SkillManagerReducer
 })
 
 const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());

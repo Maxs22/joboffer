@@ -1,10 +1,10 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
-import JobsListOptions from '../../../components//JobSeeker/JobsListOptions/JobsListOption';
-import JobsList from '../../../components//JobSeeker/JobsList/JobsList';
+import JobsListOptions from '../../../components/JobSeeker/JobsListOptions/JobsListOption';
+import JobsList from '../../../components/JobSeeker/JobsList/JobsList';
 import JobListHeader from '../../../components/JobSeeker/JobListHeader/JobListHeader'
-import './JobsListPageForJobSeeker.css';
+import './jobsListPageForJobSeeker.css';
 import { useFetchJobOffers } from '../../../services/useFetchJobOffers';
 
 import Loader from 'react-loader-spinner'
