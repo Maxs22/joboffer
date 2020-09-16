@@ -3,7 +3,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import JobDetail from '../../../components/JobSeeker/JobDetail/JobDetail';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams} from "react-router";
-import { jobDetailLoadingError, jobDetailLoaded, jobDetailLoading } from '../../../redux/JobSeeker/JobDetail/JobDetailActions';
+import { jobDetailLoadingError, jobDetailLoaded, jobDetailLoading } from '../../../redux/Job/JobDetailActions';
 import Loader from 'react-loader-spinner'
 import getData from '../../../repositories/common/getData';
 

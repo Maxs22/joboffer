@@ -43,6 +43,34 @@ export function JobDetailReducer(state = initialState, action) {
             jobDetailPostulating: false,
             JobDetailPostulationSuccess: false
         };
+        case 'PUBLISHING_JOB_OFFER': return {
+            ...state,
+            publishingJobOfferId: action.payload
+        };
+        case 'JOB_OFFER_SUCCESSFULLY_PUBLISHED': return {
+            ...state,
+            publishingJobOfferId: '',
+            editingJobOfferId: '',
+            jobOfferSuccessfullyPublished: true
+        };
+        case 'FAILURE_PUBLISHING_JOB_OFFER': return {
+            ...state,
+            jobOfferSuccessfullyPublished: false
+        };
+        case 'DELETING_JOB_OFFER': return {
+            ...state,
+            deletingJobOfferId: action.payload
+        };
+        case 'JOB_OFFER_SUCCESSFULLY_DELETED': return {
+            ...state,
+            deletingJobOfferId: '',
+            editingJobOfferId: '',
+            jobOfferSuccessfullyDeleted: true
+        };
+        case 'FAILURE_DELETING_JOB_OFFER': return {
+            ...state,
+            jobOfferSuccessfullyDeleted: false
+        };
         default: return state;
     }
 }

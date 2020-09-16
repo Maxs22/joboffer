@@ -1,8 +1,8 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Container, Card, Badge } from 'react-bootstrap';
-import { jobSelected, editingJobOffer } from '../../../redux/JobSeeker/JobList/JobListActions';
-import { jobDetailLoaded } from '../../../redux/JobSeeker/JobDetail/JobDetailActions';
+import { jobSelected, editingJobOffer } from '../../../redux/Job/JobListActions';
+import { jobDetailLoaded } from '../../../redux/Job/JobDetailActions';
 import Moment from 'moment';
 import 'moment/locale/es';
 import './JobsListItem.css';

@@ -3,7 +3,7 @@ import { Container, Col, Form, Button, Card } from 'react-bootstrap';
 import { DatePickerInput } from 'rc-datepicker';
 import { useSelector, useDispatch } from 'react-redux';
 import TextInput from 'react-autocomplete-input';
-import { skillsLoaded } from '../../../redux/Recruiter/Common/RecruiterCommonActions';
+import { skillsLoaded } from '../../../redux/SkillManager/SkillManagerActions';
 import getData from '../../../repositories/common/getData';
 import { useForm, Controller } from "react-hook-form";
 

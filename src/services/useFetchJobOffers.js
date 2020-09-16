@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { jobListLoading, jobListLoaded, jobListLoadingError } from '../redux/JobSeeker/JobList/JobListActions';
+import { jobListLoading, jobListLoaded, jobListLoadingError } from '../redux/Job/JobListActions';
 import { useDispatch, useSelector } from 'react-redux';
 import getData from '../repositories/common/getData';
 

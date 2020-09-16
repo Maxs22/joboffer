@@ -1,9 +1,10 @@
 const initialState = {
     openSkillsManager: false,
-    skillsToManage: []
+    skillsToManage: [],
+    skills: []
 }
 
-export function SharedReducer(state = initialState, action) {
+export function SkillManagerReducer(state = initialState, action) {
 
     switch (action.type) {
         case 'OPEN_SKILLS_MANAGER': return {
@@ -17,6 +18,10 @@ export function SharedReducer(state = initialState, action) {
         case 'SET_SKILLS_TO_MANAGE': return {
             ...state,
             skillsToManage: action.payload
+        }
+        case 'SKILLS_LOADED': return{
+            ...state,
+            skills: action.payload
         }
         default: return state;
     }

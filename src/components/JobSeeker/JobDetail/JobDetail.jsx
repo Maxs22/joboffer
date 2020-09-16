@@ -2,8 +2,8 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Moment from 'moment';
 import { Tabs, Tab, Table, Button } from 'react-bootstrap';
-import { loginRequired } from '../../../redux/Account/Login/LoginActions';
-import { jobDetailPostulationError, jobDetailPostulationSuccess, jobDetailPostulating } from '../../../redux/JobSeeker/JobDetail/JobDetailActions';
+import { loginRequired } from '../../../redux/Account/LoginActions';
+import { jobDetailPostulationError, jobDetailPostulationSuccess, jobDetailPostulating } from '../../../redux/Job/JobDetailActions';
 import postData from '../../../repositories/common/postData';
 
 export default function JobDetail() {

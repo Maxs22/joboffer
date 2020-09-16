@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import logo from './job.jpg';
-import { loggedInSuccessfully, loginFailed } from '../../../redux/Account/Login/LoginActions';
+import { loggedInSuccessfully, loginFailed } from '../../../redux/Account/LoginActions';
 import { Container, Row, Col } from 'react-bootstrap';
 import postData from '../../../repositories/common/postData'
 import './Login.css';

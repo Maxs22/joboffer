@@ -1,23 +1,19 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { loadingJobOffers, failureLoadingJobOffer, jobOffersSuccessfullyLoaded, removeJobsLoaded } from '../redux/Recruiter/Common/RecruiterCommonActions';
-import { loginRequired } from '../redux/Account/Login/LoginActions';
+import { jobListLoading, jobListLoaded, jobListLoadingError } from '../redux/Job/JobListActions';
+import { loginRequired } from '../redux/Account/LoginActions';
 import { getJobOffersCreatedByRecruiter } from '../repositories/JobOfferRepository';
 
 export function useFetchJobOffersForRecruiter() {
 
     const isLoggedInSuccessfully = useSelector(state => state.LoginState.loggedInSuccessfully);
     const dispatch = useDispatch();
-    let jobs = useSelector(state => state.RecruiterCommonState.jobList);
-    const jobOffersLoadingError = useSelector(state => state.JobListState.jobOffersSuccessfullyLoaded);
+    let jobs = useSelector(state => state.JobListState.jobListObjects);
+    const jobOffersLoadingError = useSelector(state => state.JobListState.jobListLoadingError);
     const token = sessionStorage.getItem("token");
 
     useEffect(() => {
         if (!isLoggedInSuccessfully) {
-
-            if (jobs.length > 0) {
-                dispatch(removeJobsLoaded);
-            }
 
             dispatch(loginRequired);
         }
@@ -26,18 +22,18 @@ export function useFetchJobOffersForRecruiter() {
 
                 if ((jobs.length === 0) && !jobOffersLoadingError) {
 
-                    dispatch(loadingJobOffers);
+                    dispatch(jobListLoading);
 
-                    const data = await getJobOffersCreatedByRecruiter(token, () => dispatch(failureLoadingJobOffer));
+                    const data = await getJobOffersCreatedByRecruiter(token, () => dispatch(jobListLoadingError));
 
                     if (typeof data !== "undefined" && data.status !== 401) {
 
                         const json = await data.json();
 
-                        dispatch(jobOffersSuccessfullyLoaded(json));
+                        dispatch(jobListLoaded(json));
                     }
                     else {
-                        dispatch(failureLoadingJobOffer);
+                        dispatch(jobListLoadingError);
                         dispatch(loginRequired);
                     }
                 }

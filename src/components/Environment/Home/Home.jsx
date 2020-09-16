@@ -6,11 +6,11 @@ import { Route, Switch } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import JobsListPageJobSeeker from '../../../pages/JobSeeker/JobsList/JobsListPageForJobSeeker';
 import JobDetailPageForJobSeeker from '../../../pages/JobSeeker/JobDetail/JobDetailPageForJobSeeker';
-import EditJobOfferPage from '../../../pages/Recruiter/JobDetail/EditJobOfferPage';
-import CreateJobOfferPage from '../../../pages/Recruiter/JobDetail/CreateJobOfferPage';
+import EditJobOfferPage from '../../../pages/Recruiter/EditJobOfferPage';
+import CreateJobOfferPage from '../../../pages/Recruiter/CreateJobOfferPage';
 import postData from '../../../repositories/common/postData';
 
-import { loggedInSuccessfully, loginFailed, loggedOutSuccessfully } from '../../../redux/Account/Login/LoginActions'
+import { loggedInSuccessfully, loginFailed, loggedOutSuccessfully } from '../../../redux/Account/LoginActions'
 
 export default function Home() {
 

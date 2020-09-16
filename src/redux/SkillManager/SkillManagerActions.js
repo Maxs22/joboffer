@@ -9,3 +9,10 @@ export const closeSkillsManager = {
 export const setSkillsToManage = {
     type: 'SET_SKILLS_TO_MANAGE'
 }
+
+export function skillsLoaded(skills) {
+    return {
+        type: 'SKILLS_LOADED',
+        payload: skills
+    }
+}
