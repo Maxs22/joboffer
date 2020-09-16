@@ -41,7 +41,7 @@ export default function Login() {
                     if (response !== ''){
                         setloginStatus('success');
                         setLoginMessage('Login Success');
-                        dispatch(loggedInSuccessfully(response.token));
+                        dispatch(loggedInSuccessfully(response));
                     }
                     else
                     {

@@ -50,14 +50,6 @@ export default function NavBar() {
     </Modal>
   )
 
-
-  const goToRecruiterHandleClick = (event) => {
-
-    history.push('/recruiter');
-    setExpanded(false);
-    event.preventDefault();
-  }
-
   const goToHomePageHandleClick = (event) => {
 
     history.push('/');
@@ -79,8 +71,6 @@ export default function NavBar() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" onClick = {()=> setExpanded(expanded ? false : "expanded")} />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link href="/recruiter" onClick ={ goToRecruiterHandleClick }>Recruiter</Nav.Link>
-            <NavDropdown.Divider />
             <Nav.Link href="#link" onClick = {()=> setExpanded(false) }>Link</Nav.Link>
             <NavDropdown.Divider />
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">

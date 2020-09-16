@@ -31,7 +31,7 @@ export default function JobsListOption(props) {
         }
     }
 
-    const sortSection = props.IsRecruiter ? (
+    const sortSection = props.isRecruiter ? (
         <Col xs={{ span: 3, offset: 1 }} >
             <DropdownButton variant='info' id="dropdown-basic-button" title="Ordenar">
                 <Dropdown.Item eventKey="sortByPublicationDate" onSelect={handleOnSelect}>Fecha de Publicación</Dropdown.Item>
@@ -49,7 +49,7 @@ export default function JobsListOption(props) {
             </Col>
         )
 
-    const filterSection = props.IsRecruiter ? (
+    const filterSection = props.isRecruiter ? (
         <Col xs={{ span: 3 }}>
             <DropdownButton variant='info' id="dropdown-basic-button" title="Filtrar">
                 <Dropdown.Item eventKey="filterByState" onSelect={handleOnSelect}>Estado del aviso</Dropdown.Item>
@@ -70,7 +70,7 @@ export default function JobsListOption(props) {
             </Col>
         )
 
-    const newJobOfferButton = props.IsRecruiter ? (
+    const newJobOfferButton = props.isRecruiter ? (
             <Col xs={{ span: 5 }}>
                 <Button variant="primary" onClick={createNewJobOffer} >Nuevo Aviso</Button>
             </Col>

@@ -11,15 +11,15 @@ export default function EditJobOfferPage() {
 
     useFetchJobOffersForRecruiter();
 
-    let selectedJobOfferToEdit = useSelector(state => state.RecruiterCommonState.editingJobOfferId);
+    let selectedJobOfferToEdit = useSelector(state => state.JobListState.editingJobOfferId);
 
     if(selectedJobOfferToEdit ===""){
         selectedJobOfferToEdit = param.id;
     }
 
-    const jobs = useSelector(state => state.RecruiterCommonState.jobList);
+    const jobs = useSelector(state => state.JobListState.jobListObjects);
 
-    const jobToEdit = jobs.find(j => j.id === selectedJobOfferToEdit);
+    const jobToEdit = jobs.find(item => item.jobOffer.id === selectedJobOfferToEdit);
 
     return (
         <Container>
@@ -31,7 +31,7 @@ export default function EditJobOfferPage() {
             </Row>
             <Row>
                 <Col lg="10">
-                    <RecruiterEditCreateJobDetail JobOffer = {jobToEdit}></RecruiterEditCreateJobDetail>
+                    <RecruiterEditCreateJobDetail JobOffer = {jobToEdit.jobOffer}></RecruiterEditCreateJobDetail>
                 </Col>
             </Row>
         </Container>

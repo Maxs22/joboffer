@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {  Button, Modal } from 'react-bootstrap';
+import { Button, Modal } from 'react-bootstrap';
 import Login from '../../Login/Login';
 import './AccountSmallSize.css'
 import { loginRequired, loginCanceled, logoutRequired, logoutCanceled, loggedOutSuccessfully } from '../../../../redux/Account/Login/LoginActions';
@@ -52,9 +52,9 @@ export default function AccountSmallSize() {
 
     return (
         <span>
-                    <Button variant="link" onClick={() => handleClick()}>{userIsLogged ? "Logout" : "Login"}</Button>
-                    {loginModal}
-                    {logoutConfirmModal}
+            <Button variant="link" onClick={() => handleClick()}>{userIsLogged ? "Logout" : "Login"}</Button>
+            {loginModal}
+            {logoutConfirmModal}
         </span>
     );
 }

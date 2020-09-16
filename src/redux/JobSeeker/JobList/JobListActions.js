@@ -18,6 +18,16 @@ export const filterByTypeOfCompany = {
     payload: []
 }
 
+export const filterByCompanyName = {
+    type: 'FILTERED_BY_COMPANY_NAME',
+    payload: []
+}
+
+export const filterByState = {
+    type: 'FILTERED_BY_JOB_OFFER_STATE',
+    payload: []
+}
+
 export const sortByPublicationDate = {
     type: 'ORDERING_BY_PUBLICACION_DATE'
 }
@@ -48,12 +58,9 @@ export function jobSelected(jobId){
     }
 }
 
-export const filterByCompanyName = {
-    type: 'FILTERED_BY_COMPANY_NAME',
-    payload: []
-}
-
-export const filterByState = {
-    type: 'FILTERED_BY_JOB_OFFER_STATE',
-    payload: []
+export function editingJobOffer(jobOfferId) {
+    return {
+        type: 'EDITING_JOB_OFFER',
+        payload: jobOfferId
+    }
 }

@@ -4,7 +4,6 @@ import { LoginReducer }  from '../redux/Account/Login/LoginReducer';
 import { JobListReducer }  from '../redux/JobSeeker/JobList/JobListReducer';
 import { JobDetailReducer } from '../redux/JobSeeker/JobDetail/JobDetailReducer';
 import { RecruiterCommonReducer} from './Recruiter/Common/RecruiterCommonReducer';
-import { RecruiterJobListReducer } from '../redux/Recruiter/JobList/RecruiterJobListReducer';
 import { SharedReducer } from '../redux/Shared/SharedReducer';
 
 const rootReducer = combineReducers({
@@ -12,7 +11,6 @@ const rootReducer = combineReducers({
     JobListState:  JobListReducer,
     JobDetailState: JobDetailReducer,
     RecruiterCommonState: RecruiterCommonReducer,
-    RecruiterJobListState: RecruiterJobListReducer,
     SharedState: SharedReducer
 })
 

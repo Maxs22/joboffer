@@ -6,7 +6,8 @@ const initialState = {
     jobListLoaded: false,
     jobListObjects: [],
     jobListLoadingError: false,
-    jobdIdSelected: ''
+    jobdIdSelected: '',
+    editingJobOfferId: ''
 }
 
 export function JobListReducer(state = initialState, action) {
@@ -65,6 +66,11 @@ export function JobListReducer(state = initialState, action) {
             ...state,
             jobdIdSelected: action.payload
         }
+
+        case 'EDITING_JOB_OFFER': return {
+            ...state,
+            editingJobOfferId: action.payload
+        };
 
         default: return state
     }
