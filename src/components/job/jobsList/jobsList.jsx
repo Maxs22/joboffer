@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
 import "../../../../node_modules/react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-import JobsListItem from '../../../components/JobSeeker/JobsListItem/JobsListItem';
+import JobsListItem from '../../../components/job/jobsListItem/jobsListItem';
 import { useSelector } from 'react-redux';
 
 export default function JobsList(props) {

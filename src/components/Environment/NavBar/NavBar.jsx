@@ -2,10 +2,10 @@ import React, { useState }from 'react';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Modal, Container } from 'react-bootstrap';
-import Login from '../login/Login';
-import { loginRequired, loginCanceled, logoutRequired, logoutCanceled, loggedOutSuccessfully } from '../../../redux/Account/LoginActions';
+import Login from '../login/login';
+import { loginRequired, loginCanceled, logoutRequired, logoutCanceled, loggedOutSuccessfully } from '../../../redux/account/loginActions';
 import { useHistory } from "react-router-dom";
-import './NavBar.css';
+import './navBar.css';
 
 export default function NavBar() {
 

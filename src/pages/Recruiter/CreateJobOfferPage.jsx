@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import RecruiterEditCreateJobDetail  from '../../components/Recruiter/EditCreateJobOffer';
+import RecruiterEditCreateJobDetail  from '../../components/job/editCreateJobOffer/editCreateJobOffer';
 
 import 'react-autocomplete-input/dist/bundle.css';
 import 'rc-datepicker/lib/style.css'

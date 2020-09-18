@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import JobDetail from '../../../components/JobSeeker/JobDetail/JobDetail';
+import JobDetail from '../../../components/job/jobDetail/jobDetail';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams} from "react-router";
-import { jobDetailLoadingError, jobDetailLoaded, jobDetailLoading } from '../../../redux/Job/JobDetailActions';
+import { jobDetailLoadingError, jobDetailLoaded, jobDetailLoading } from '../../../redux/job/jobDetailActions';
 import Loader from 'react-loader-spinner'
 import getData from '../../../repositories/common/getData';
 

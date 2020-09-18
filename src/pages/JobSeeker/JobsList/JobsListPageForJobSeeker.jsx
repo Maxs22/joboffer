@@ -1,9 +1,9 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
-import JobsListOptions from '../../../components/JobSeeker/JobsListOptions/JobsListOption';
-import JobsList from '../../../components/JobSeeker/JobsList/JobsList';
-import JobListHeader from '../../../components/JobSeeker/JobListHeader/JobListHeader'
+import JobsListOptions from '../../../components/job/jobsListOptions/jobsListOption';
+import JobsList from '../../../components/job/jobsList/jobsList';
+import JobListHeader from '../../../components/job/jobListHeader/jobListHeader'
 import './jobsListPageForJobSeeker.css';
 import { useFetchJobOffers } from '../../../services/useFetchJobOffers';
 

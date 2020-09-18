@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import NavBar from '../navBar/NavBar';
-import './Home.css';
+import NavBar from '../navBar/navBar';
+import './home.css';
 import { Route, Switch } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import JobsListPageJobSeeker from '../../../pages/jobSeeker/jobsList/jobsListPageForJobSeeker';
@@ -10,7 +10,7 @@ import EditJobOfferPage from '../../../pages/recruiter/editJobOfferPage';
 import CreateJobOfferPage from '../../../pages/recruiter/createJobOfferPage';
 import postData from '../../../repositories/common/postData';
 
-import { loggedInSuccessfully, loginFailed, loggedOutSuccessfully } from '../../../redux/Account/LoginActions'
+import { loggedInSuccessfully, loginFailed, loggedOutSuccessfully } from '../../../redux/account/loginActions'
 
 export default function Home() {
 

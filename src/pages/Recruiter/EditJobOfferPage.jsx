@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
-import EditCreateJobOffer  from '../../components/Recruiter/EditCreateJobOffer';
+import EditCreateJobOffer  from '../../components/job/editCreateJobOffer/editCreateJobOffer';
 import { useFetchJobOffersForRecruiter } from '../../services/useFetchJobOffersForRecruiter';
 import { useParams} from "react-router";
 

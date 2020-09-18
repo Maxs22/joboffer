@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Modal } from 'react-bootstrap';
-import Login from '../../Login/Login';
+import Login from '../../login/login';
 import './AccountSmallSize.css'
 import { loginRequired, loginCanceled, logoutRequired, logoutCanceled, loggedOutSuccessfully } from '../../../../redux/Account/Login/LoginActions';
 

@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { jobListLoading, jobListLoaded, jobListLoadingError } from '../redux/Job/JobListActions';
-import { loginRequired } from '../redux/Account/LoginActions';
-import { getJobOffersCreatedByRecruiter } from '../repositories/JobOfferRepository';
+import { jobListLoading, jobListLoaded, jobListLoadingError } from '../redux/job/jobListActions';
+import { loginRequired } from '../redux/account/loginActions';
+import { getJobOffersCreatedByRecruiter } from '../repositories/jobOfferRepository';
 
 export function useFetchJobOffersForRecruiter() {
 

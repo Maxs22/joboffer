@@ -3,13 +3,13 @@ import { Container, Col, Form, Button, Card } from 'react-bootstrap';
 import { DatePickerInput } from 'rc-datepicker';
 import { useSelector, useDispatch } from 'react-redux';
 import TextInput from 'react-autocomplete-input';
-import { skillsLoaded } from '../../redux/SkillManager/SkillManagerActions';
-import getData from '../../repositories/common/getData';
+import { skillsLoaded } from '../../../redux/skillManager/skillManagerActions';
+import getData from '../../../repositories/common/getData';
 import { useForm, Controller } from "react-hook-form";
 
 
-import '../../../node_modules/react-autocomplete-input/dist/bundle.css';
-import '../../../node_modules/rc-datepicker/lib/style.css'
+import '../../../../node_modules/react-autocomplete-input/dist/bundle.css';
+import '../../../../node_modules/rc-datepicker/lib/style.css'
 
 export default function RecruiterEditCreateJobDetail(props) {
 

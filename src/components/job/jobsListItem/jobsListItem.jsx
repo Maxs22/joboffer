@@ -1,11 +1,11 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Container, Card, Badge } from 'react-bootstrap';
-import { jobSelected, editingJobOffer } from '../../../redux/Job/JobListActions';
-import { jobDetailLoaded } from '../../../redux/Job/JobDetailActions';
+import { jobSelected, editingJobOffer } from '../../../redux/job/jobListActions';
+import { jobDetailLoaded } from '../../../redux/job/jobDetailActions';
 import Moment from 'moment';
 import 'moment/locale/es';
-import './JobsListItem.css';
+import './jobsListItem.css';
 import { useHistory } from "react-router-dom";
 
 export default function JobsListItem(props) {

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import logo from './job.jpg';
-import { loggedInSuccessfully, loginFailed } from '../../../redux/Account/LoginActions';
+import { loggedInSuccessfully, loginFailed } from '../../../redux/account/loginActions';
 import { Container, Row, Col } from 'react-bootstrap';
 import postData from '../../../repositories/common/postData'
-import './Login.css';
+import './login.css';
 
 export default function Login() {
 

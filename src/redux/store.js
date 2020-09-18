@@ -1,9 +1,9 @@
 import { createStore } from 'redux'
 import { combineReducers } from 'redux'
-import { LoginReducer }  from '../redux/Account/LoginReducer';
-import { JobListReducer }  from './Job/JobListReducer';
-import { JobDetailReducer } from './Job/JobDetailReducer';
-import { SkillManagerReducer } from './SkillManager/SkillManagerReducer';
+import { LoginReducer }  from '../redux/account/loginReducer';
+import { JobListReducer }  from './job/jobListReducer';
+import { JobDetailReducer } from './job/jobDetailReducer';
+import { SkillManagerReducer } from './skillManager/skillManagerReducer';
 
 const rootReducer = combineReducers({
     LoginState: LoginReducer,
