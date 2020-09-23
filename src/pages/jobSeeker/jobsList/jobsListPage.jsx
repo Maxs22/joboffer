@@ -4,12 +4,12 @@ import { useSelector } from 'react-redux';
 import JobsListOptions from '../../../components/job/jobsListOptions/jobsListOption';
 import JobsList from '../../../components/job/jobsList/jobsList';
 import JobListHeader from '../../../components/job/jobListHeader/jobListHeader'
-import './jobsListPageForJobSeeker.css';
-import { useFetchJobOffers } from '../../../services/useFetchJobOffers';
+import './jobsListPage.css';
+import { useFetchJobOffers } from '../../../hooks/useFetchJobOffers';
 
 import Loader from 'react-loader-spinner'
 
-export default function JobsListPageForJobSeeker() {
+export default function JobsListPage() {
 
     useFetchJobOffers();
 

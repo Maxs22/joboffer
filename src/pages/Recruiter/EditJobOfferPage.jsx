@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import EditCreateJobOffer  from '../../components/job/editCreateJobOffer/editCreateJobOffer';
-import { useFetchJobOffersForRecruiter } from '../../services/useFetchJobOffersForRecruiter';
+import { useFetchJobOffersForRecruiter } from '../../hooks/useFetchJobOffersForRecruiter';
 import { useParams} from "react-router";
 
 export default function EditJobOfferPage() {

@@ -1,16 +1,16 @@
 import React, { useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import NavBar from '../navBar/navBar';
+import NavBar from '../../components/environment/navBar/navBar';
 import './home.css';
 import { Route, Switch } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import JobsListPageJobSeeker from '../../../pages/jobSeeker/jobsList/jobsListPageForJobSeeker';
-import JobDetailPageForJobSeeker from '../../../pages/jobSeeker/jobDetail/jobDetailPageForJobSeeker';
-import EditJobOfferPage from '../../../pages/recruiter/editJobOfferPage';
-import CreateJobOfferPage from '../../../pages/recruiter/createJobOfferPage';
-import postData from '../../../repositories/common/postData';
+import JobsListPage from '../jobSeeker/jobsList/jobsListPage';
+import JobDetailPage from '../jobSeeker/jobDetail/jobDetailPage';
+import EditJobOfferPage from '../recruiter/editJobOfferPage';
+import CreateJobOfferPage from '../recruiter/createJobOfferPage';
+import postData from '../../repositories/common/postData';
 
-import { loggedInSuccessfully, loginFailed, loggedOutSuccessfully } from '../../../redux/account/loginActions'
+import { loggedInSuccessfully, loginFailed, loggedOutSuccessfully } from '../../redux/account/loginActions'
 
 export default function Home() {
 
@@ -56,10 +56,10 @@ export default function Home() {
             <Row className="mainContainer">
                 <Switch>
                     <Route path="/" exact>
-                        <JobsListPageJobSeeker></JobsListPageJobSeeker>
+                        <JobsListPage></JobsListPage>
                     </Route>
                     <Route path="/jobdetail/:id">
-                        <JobDetailPageForJobSeeker></JobDetailPageForJobSeeker>
+                        <JobDetailPage></JobDetailPage>
                     </Route>
                     <Route path="/recruiter/edit/joboffer/:id" exact>
                         <EditJobOfferPage></EditJobOfferPage>

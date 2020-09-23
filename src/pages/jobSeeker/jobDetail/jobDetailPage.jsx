@@ -7,7 +7,7 @@ import { jobDetailLoadingError, jobDetailLoaded, jobDetailLoading } from '../../
 import Loader from 'react-loader-spinner'
 import getData from '../../../repositories/common/getData';
 
-export default function JobDetailPageJobSeeker() {
+export default function JobDetailPage() {
 
     const job = useSelector(state => state.JobDetailState.jobDetailObject);
     const showLoadingSpinner = useSelector(state => state.JobDetailState.jobDetailLoading);
