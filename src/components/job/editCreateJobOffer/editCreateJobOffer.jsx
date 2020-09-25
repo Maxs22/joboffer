@@ -101,8 +101,7 @@ export default function EditCreateJobDetail(props) {
                         </Col>
                     </Card>
                 </Form.Group>
-                <Button variant="primary" type="submit">Publicar</Button><br/><br/>
-                <Button variant="info" type="submit">Grabar sin publicar</Button><br/><br/>
+                <Button variant="primary" type="submit">Guardar</Button><br/>
                 <br />
             </Form>
         </Container>

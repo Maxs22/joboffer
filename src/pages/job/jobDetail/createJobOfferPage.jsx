@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import EditCreateJobDetail  from '../../components/job/editCreateJobOffer/editCreateJobOffer';
-import useFetchSkills from '../../hooks/useFetchSkills';
+import EditCreateJobDetail  from '../../../components/job/editCreateJobOffer/editCreateJobOffer';
+import useFetchSkills from '../../../hooks/useFetchSkills';
 
 import 'react-autocomplete-input/dist/bundle.css';
 import 'rc-datepicker/lib/style.css'

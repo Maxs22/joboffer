@@ -37,11 +37,20 @@ export default function JobsListItem(props) {
         <Card.Link href={'/recruiter/edit/joboffer/' + props.jobOffer.id} onClick={setEditingJobOffer} >Editar</Card.Link>
     ) : ""
 
+    let jobOfferState;
+
+    switch(props.jobOffer.state){
+        case 0: jobOfferState = <Badge variant="info">Creado el {Moment(props.jobOffer.date).format('LL')}</Badge>;break;
+        case 1: jobOfferState = <Badge variant="success">Publicado {Moment(props.jobOffer.date).format('LL')}</Badge>;break;
+        case 2: jobOfferState = <Badge variant="warning">Finalizado el {Moment(props.jobOffer.date).format('LL')}</Badge>;break;
+        default: jobOfferState = "";break;
+    }
+
     const cardHeader = props.isRecruiter ? (
         <>
             <Card.Title>{props.jobOffer.title} - {props.jobOffer.zone} </Card.Title>
             <Card.Subtitle className="mb-2 text-muted">Cliente: {props.jobOffer.company.name}</Card.Subtitle>
-            <Badge variant="success">Publicado {Moment(props.jobOffer.date).format('LL')}</Badge>
+            {jobOfferState}
         </>
     ) : (
             <>
@@ -67,6 +76,6 @@ export default function JobsListItem(props) {
     );
 
     return (<Container>
-        { card}
+        { card }
     </Container>);
 }

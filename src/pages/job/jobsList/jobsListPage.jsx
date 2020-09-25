@@ -5,16 +5,18 @@ import JobsListOptions from '../../../components/job/jobsListOptions/jobsListOpt
 import JobsList from '../../../components/job/jobsList/jobsList';
 import JobListHeader from '../../../components/job/jobListHeader/jobListHeader'
 import './jobsListPage.css';
-import { useFetchJobOffers } from '../../../hooks/useFetchJobOffers';
+import useFetchJobOffers from '../../../hooks/useFetchJobOffers';
 
 import Loader from 'react-loader-spinner'
 
 export default function JobsListPage() {
 
-    useFetchJobOffers();
+    const isRecruiter = useSelector(state => state.LoginState.isRecruiter);
+
+    useFetchJobOffers(isRecruiter);
 
     const showLoadingSpinner = useSelector(state => state.JobListState.jobListLoading);
-    const isRecruiter = useSelector(state => state.LoginState.isRecruiter);
+
 
     const spinner = showLoadingSpinner && (
         <span>

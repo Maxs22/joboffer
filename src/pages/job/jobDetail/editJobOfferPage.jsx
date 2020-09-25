@@ -1,16 +1,16 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
-import EditCreateJobOffer  from '../../components/job/editCreateJobOffer/editCreateJobOffer';
-import { useFetchJobOffersForRecruiter } from '../../hooks/useFetchJobOffersForRecruiter';
+import EditCreateJobOffer  from '../../../components/job/editCreateJobOffer/editCreateJobOffer'
+import useFetchJobOffers from '../../../hooks/useFetchJobOffers';
 import { useParams} from "react-router";
-import useFetchSkills from '../../hooks/useFetchSkills';
+import useFetchSkills from '../../../hooks/useFetchSkills';
 
 export default function EditJobOfferPage() {
 
     let param = useParams();
 
-    useFetchJobOffersForRecruiter();
+    useFetchJobOffers(true);
 
     let selectedJobOfferToEdit = useSelector(state => state.JobListState.editingJobOfferId);
 
