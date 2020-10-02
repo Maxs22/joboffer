@@ -37,9 +37,10 @@ export default function Login() {
 
             if (typeof data !== "undefined") {
 
-                const response = await data.json();
+                if (data.status === 200) {
 
-                if (response !== '') {
+                    const response = await data.json();
+
                     setloginStatus('success');
                     setLoginMessage('Login Success');
                     dispatch(loggedInSuccessfully(response));
