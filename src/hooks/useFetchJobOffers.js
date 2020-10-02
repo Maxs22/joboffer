@@ -13,43 +13,43 @@ export default function useFetchJobOffers(isRecruiter) {
     const token = sessionStorage.getItem("token");
 
     useEffect(() => {
-       
-            const fetchJobs = async () => {
 
-                if ((jobs.length === 0) && !jobOffersLoadingError) {
+        const fetchJobs = async () => {
 
-                    if (isRecruiter && !isLoggedInSuccessfully) {
+            if ((jobs.length === 0) && !jobOffersLoadingError) {
 
-                        dispatch(loginRequired);
+                if (isRecruiter && !isLoggedInSuccessfully) {
+
+                    dispatch(loginRequired);
+                }
+                else {
+
+                    dispatch(jobListLoading);
+
+                    let data;
+
+                    if (isRecruiter) {
+                        data = await getJobOffersCreatedByRecruiter(token, () => dispatch(jobListLoadingError));
                     }
                     else {
+                        data = await getJobOffers(token, () => dispatch(jobListLoadingError));
+                    }
 
-                        dispatch(jobListLoading);
+                    if (typeof data !== "undefined" && data.status !== 401) {
 
-                        let data;
-    
-                        if(isRecruiter){
-                            data = await getJobOffersCreatedByRecruiter(token,() => dispatch(jobListLoadingError));
-                        } 
-                        else{
-                            data = await getJobOffers(token,() => dispatch(jobListLoadingError));
-                        }
-    
-                        if (typeof data !== "undefined" && data.status !== 401) {
-    
-                            const json = await data.json();
-    
-                            dispatch(jobListLoaded(json));
-                        }
-                        else {
-                            dispatch(jobListLoadingError);
-                            dispatch(loginRequired);
-                        }
+                        const json = await data.json();
+
+                        dispatch(jobListLoaded(json));
+                    }
+                    else {
+                        dispatch(jobListLoadingError);
+                        dispatch(loginRequired);
                     }
                 }
             }
+        }
 
-            fetchJobs();
-        
+        fetchJobs();
+
     }, [isLoggedInSuccessfully, dispatch, jobOffersLoadingError, jobs, token, isRecruiter])
 }

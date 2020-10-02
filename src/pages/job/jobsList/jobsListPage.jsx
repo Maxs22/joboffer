@@ -15,6 +15,8 @@ export default function JobsListPage() {
 
     useFetchJobOffers(isRecruiter);
 
+    let jobs = useSelector(state => state.JobListState.jobListObjects);
+
     const showLoadingSpinner = useSelector(state => state.JobListState.jobListLoading);
 
 
@@ -42,7 +44,7 @@ export default function JobsListPage() {
                 <Col>
                     <hr className="headerLineSeparator" />
                     {spinner}
-                    <JobsList isRecruiter={isRecruiter}></JobsList>
+                    <JobsList isRecruiter={isRecruiter} jobs={jobs}></JobsList>
                 </Col>
             </Row>
         </Container>

@@ -33,7 +33,7 @@ export default function Home() {
                     if (typeof data !== "undefined") {
 
                         if (data.status === 200) {
-                            dispatch(loggedInSuccessfully(token));
+                            dispatch(loggedInSuccessfully({isRecruiter: data.ok, token: token}));
                         }
                         else {
                             dispatch(loggedOutSuccessfully);
