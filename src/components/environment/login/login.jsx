@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import logo from './job.jpg';
 import { loggedInSuccessfully, loginFailed } from '../../../redux/account/loginActions';
+import { refreshJobList } from '../../../redux/job/jobListActions'
 import { Container, Row, Col } from 'react-bootstrap';
 import postData from '../../../repositories/common/postData'
 import './login.css';
@@ -29,31 +30,31 @@ export default function Login() {
 
         event.preventDefault();
 
-        const requestSignIn = async () =>{
+        const requestSignIn = async () => {
 
 
-                const data = await postData('/account/signin',JSON.stringify({email: user, password: password }), ()=> dispatch(loginFailed));
-                
-                if(typeof data !== "undefined" ){
+            const data = await postData('/account/signin', JSON.stringify({ email: user, password: password }), () => dispatch(loginFailed));
 
-                    const response = await data.json();
+            if (typeof data !== "undefined") {
 
-                    if (response !== ''){
-                        setloginStatus('success');
-                        setLoginMessage('Login Success');
-                        dispatch(loggedInSuccessfully(response));
-                    }
-                    else
-                    {
-                        dispatch(loginFailed);
-                        setLoginMessage('User or password invalid');
-                        setloginStatus('error');
-                    }
+                const response = await data.json();
+
+                if (response !== '') {
+                    setloginStatus('success');
+                    setLoginMessage('Login Success');
+                    dispatch(loggedInSuccessfully(response));
+                    dispatch(refreshJobList);
                 }
-                else{
+                else {
+                    dispatch(loginFailed);
                     setLoginMessage('User or password invalid');
                     setloginStatus('error');
                 }
+            }
+            else {
+                setLoginMessage('User or password invalid');
+                setloginStatus('error');
+            }
         }
 
         requestSignIn();

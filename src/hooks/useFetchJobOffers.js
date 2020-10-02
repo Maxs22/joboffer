@@ -9,6 +9,7 @@ export default function useFetchJobOffers(isRecruiter) {
     const isLoggedInSuccessfully = useSelector(state => state.LoginState.loggedInSuccessfully);
     const dispatch = useDispatch();
     let jobs = useSelector(state => state.JobListState.jobListObjects);
+    const requiresRefreshingJobList = useSelector(state => state.JobListState.requiresRefreshingJobList);
     const jobOffersLoadingError = useSelector(state => state.JobListState.jobListLoadingError);
     const token = sessionStorage.getItem("token");
 
@@ -16,7 +17,7 @@ export default function useFetchJobOffers(isRecruiter) {
 
         const fetchJobs = async () => {
 
-            if ((jobs.length === 0) && !jobOffersLoadingError) {
+            if ((jobs.length === 0) || requiresRefreshingJobList) {
 
                 if (isRecruiter && !isLoggedInSuccessfully) {
 
@@ -51,5 +52,5 @@ export default function useFetchJobOffers(isRecruiter) {
 
         fetchJobs();
 
-    }, [isLoggedInSuccessfully, dispatch, jobOffersLoadingError, jobs, token, isRecruiter])
+    }, [isLoggedInSuccessfully, dispatch, jobOffersLoadingError, jobs, token, isRecruiter, requiresRefreshingJobList])
 }

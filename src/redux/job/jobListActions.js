@@ -44,6 +44,10 @@ export const jobListLoadingError = {
     type: 'JOB_LIST_LOADING_ERROR'
 }
 
+export const refreshJobList = {
+    type: 'REFRESH_JOB_LIST'
+}
+
 export function jobListLoaded (jobs){
     return {
         type: 'JOB_LIST_LOADED',

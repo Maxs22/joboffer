@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button, Modal, Container } from 'react-bootstrap';
 import Login from '../login/login';
 import { loginRequired, loginCanceled, logoutRequired, logoutCanceled, loggedOutSuccessfully } from '../../../redux/account/loginActions';
+import { refreshJobList } from '../../../redux/job/jobListActions';
 import { useHistory } from "react-router-dom";
 import './navBar.css';
 
@@ -30,6 +31,12 @@ export default function NavBar() {
     </Modal>
   )
 
+  const handleLogOut = (event) => {
+
+    dispatch(loggedOutSuccessfully);
+    dispatch(refreshJobList);
+  }
+
   const logoutConfirmModal = showLogoutModal && (
 
     <Modal show={showLogoutModal} onHide={() => dispatch(logoutCanceled)}>
@@ -43,7 +50,7 @@ export default function NavBar() {
         <Button variant="secondary" onClick={() => dispatch(logoutCanceled)}>
           Cancel
                 </Button>
-        <Button variant="primary" onClick={() => dispatch(loggedOutSuccessfully)}>
+        <Button variant="primary" onClick={handleLogOut}>
           Confirm
                 </Button>
       </Modal.Footer>
