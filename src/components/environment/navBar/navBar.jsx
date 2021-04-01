@@ -5,6 +5,7 @@ import { Button, Modal, Container } from 'react-bootstrap';
 import Login from '../login/login';
 import { loginRequired, loginCanceled, logoutRequired, logoutCanceled, loggedOutSuccessfully } from '../../../redux/account/loginActions';
 import { refreshJobList } from '../../../redux/job/jobListActions';
+import { jobDetailCleanUp } from '../../../redux/job/jobDetailActions';
 import { useHistory } from "react-router-dom";
 import './navBar.css';
 
@@ -59,6 +60,8 @@ export default function NavBar() {
 
   const goToHomePageHandleClick = (event) => {
 
+    dispatch(refreshJobList);
+    dispatch(jobDetailCleanUp);
     history.push('/');
     event.preventDefault();
   }

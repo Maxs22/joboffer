@@ -71,6 +71,7 @@ export function JobDetailReducer(state = initialState, action) {
             ...state,
             jobOfferSuccessfullyDeleted: false
         };
+        case 'JOB_DETAIL_CLEAN_UP': return initialState;
         default: return state;
     }
 }

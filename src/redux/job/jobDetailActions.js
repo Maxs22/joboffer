@@ -25,3 +25,7 @@ export const jobDetailPostulationSuccess = {
 export const jobDetailPostulationError = {
     type: 'JOB_DETAIL_POSTULATING_POSTULATION_ERROR'
 }
+
+export const jobDetailCleanUp = {
+    type: 'JOB_DETAIL_CLEAN_UP'
+}

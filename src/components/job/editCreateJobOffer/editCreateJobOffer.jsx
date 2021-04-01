@@ -49,7 +49,7 @@ export default function EditCreateJobDetail(props) {
                             <br />
                             <h5>Empresa empleadora</h5>
                             <Form.Label>Nombre</Form.Label><br />
-                            <Controller as={TextInput} name="companyName" autocomplete="off" options={["apple", "apricot", "banana", "carrot"]} trigger='' Component='input' control={control} className='form-control' defaultValue={props.JobOffer?.company.name} />
+                            <Controller as={TextInput} name="companyName" autoComplete="off" options={["apple", "apricot", "banana", "carrot"]} trigger='' Component='input' control={control} className='form-control' defaultValue={props.JobOffer?.company.name} />
                             <br />
                             <Form.Label>Rubro</Form.Label>
                             <Form.Control type="text" disabled defaultValue={props.JobOffer?.company.activity} name="companyActivity" ref={register} />
@@ -77,7 +77,7 @@ export default function EditCreateJobDetail(props) {
                             <br />
                             <Form.Group controlId="skills">
                                 <h5>Conocimientos</h5>
-                                <Controller as={TextInput} control={control} matchAny="true" name="skills" autocomplete="off" options={props.SkillsAvailable.map(s => s.name)} trigger='' Component='input' className='form-control' spacer=',' defaultValue={skillsToShow}/><br />
+                                <Controller as={TextInput} control={control} matchAny={true} name="skills" autoComplete="off" options={props.SkillsAvailable.map(s => s.name)} trigger='' Component='input' className='form-control' spacer=',' defaultValue={skillsToShow}/><br />
                                 <Button variant="warning" type="submit">
                                     Añadir tiempo mínimo requerido
                                 </Button>

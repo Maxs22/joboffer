@@ -44,7 +44,8 @@ export function JobListReducer(state = initialState, action) {
 
         case 'JOB_LIST_LOADING': return {
             ...state,
-            jobListLoading: true
+            jobListLoading: true,
+            jobdIdSelected: ''
         }
 
         case 'JOB_LIST_LOADED': return {
