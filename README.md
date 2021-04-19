@@ -6,6 +6,10 @@ You need to [install Node](https://nodejs.org/en/download/) before you can use t
 
 In the project directory, you can run:
 
+### `npm install`
+
+Installs the node_modules in your local folder
+
 ### `npm start`
 
 Runs the app in the development mode.<br />
