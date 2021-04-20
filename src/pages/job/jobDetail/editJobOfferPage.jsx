@@ -1,9 +1,9 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
-import EditCreateJobOffer  from '../../../components/job/editCreateJobOffer/editCreateJobOffer'
+import EditCreateJobOffer from '../../../components/job/editCreateJobOffer/editCreateJobOffer'
 import useFetchJobOffers from '../../../hooks/useFetchJobOffers';
-import { useParams} from "react-router";
+import { useParams } from "react-router";
 import useFetchSkills from '../../../hooks/useFetchSkills';
 
 export default function EditJobOfferPage() {
@@ -14,15 +14,17 @@ export default function EditJobOfferPage() {
 
     let selectedJobOfferToEdit = useSelector(state => state.JobListState.editingJobOfferId);
 
-    if(selectedJobOfferToEdit ===""){
+    if (!selectedJobOfferToEdit) {
         selectedJobOfferToEdit = param.id;
     }
 
     const jobs = useSelector(state => state.JobListState.jobListObjects);
 
-    const jobToEdit = jobs.find(item => item.jobOffer.id === selectedJobOfferToEdit);
+    const jobToEdit = jobs?.find(item => item.jobOffer.id === selectedJobOfferToEdit);
 
     const skillsAvailable = useFetchSkills();
+
+    const content = jobs.length === 0 ? <label>Cargando aviso</label> : <EditCreateJobOffer JobOffer={jobToEdit.jobOffer} SkillsAvailable={skillsAvailable}></EditCreateJobOffer>
 
     return (
         <Container>
@@ -34,7 +36,7 @@ export default function EditJobOfferPage() {
             </Row>
             <Row>
                 <Col lg="10">
-                    <EditCreateJobOffer JobOffer = {jobToEdit.jobOffer} SkillsAvailable = {skillsAvailable}></EditCreateJobOffer>
+                    {content}
                 </Col>
             </Row>
         </Container>
