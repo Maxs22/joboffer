@@ -5,10 +5,10 @@ import { jobSelected, editingJobOffer } from '../../../redux/job/jobListActions'
 import { jobDetailLoaded } from '../../../redux/job/jobDetailActions';
 import Moment from 'moment';
 import 'moment/locale/es';
-import './jobsListItem.css';
+import './jobListItem.css';
 import { useHistory } from "react-router-dom";
 
-export default function JobsListItem(props) {
+export default function JobListItem(props) {
 
     const dispatch = useDispatch();
 

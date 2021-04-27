@@ -4,7 +4,7 @@ import { Row, Col, DropdownButton, Dropdown, Button } from 'react-bootstrap';
 import { filterByPositionName, filterBySkills, filterByCompanyName, filterByState, filterByLocation, filterByTypeOfCompany, sortByPublicationDate, sortByLocation } from '../../../redux/job/jobListActions';
 import { useHistory } from "react-router-dom";
 
-export default function JobsListOption(props) {
+export default function JobListOption(props) {
 
     const dispatch = useDispatch();
 

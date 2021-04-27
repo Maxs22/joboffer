@@ -1,15 +1,15 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
-import JobsListOptions from '../../../components/job/jobsListOptions/jobsListOption';
-import JobsList from '../../../components/job/jobsList/jobsList';
+import JobListOptions from '../../../components/job/jobListOptions/jobListOption';
+import JobList from '../../../components/job/jobList/jobList';
 import JobListHeader from '../../../components/job/jobListHeader/jobListHeader'
-import './jobsListPage.css';
+import './jobListPage.css';
 import useFetchJobOffers from '../../../hooks/useFetchJobOffers';
 
 import Loader from 'react-loader-spinner'
 
-export default function JobsListPage() {
+export default function JobListPage() {
 
     const isRecruiter = useSelector(state => state.LoginState.isRecruiter);
 
@@ -37,14 +37,14 @@ export default function JobsListPage() {
             <Row>
                 <Col>
                     <JobListHeader/>
-                    <JobsListOptions isRecruiter={isRecruiter} ></JobsListOptions>
+                    <JobListOptions isRecruiter={isRecruiter} ></JobListOptions>
                 </Col>
             </Row>
             <Row>
                 <Col>
                     <hr className="headerLineSeparator" />
                     {spinner}
-                    <JobsList isRecruiter={isRecruiter} jobs={jobs}></JobsList>
+                    <JobList isRecruiter={isRecruiter} jobs={jobs}></JobList>
                 </Col>
             </Row>
         </Container>

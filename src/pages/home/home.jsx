@@ -4,7 +4,7 @@ import NavBar from '../../components/environment/navBar/navBar';
 import './home.css';
 import { Route, Switch } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import JobsListPage from '../job/jobsList/jobsListPage';
+import JobListPage from '../job/jobList/jobListPage';
 import JobDetailPage from '../job/jobDetail/jobDetailPage';
 import EditJobOfferPage from '../job/jobDetail/editJobOfferPage';
 import CreateJobOfferPage from '../job/jobDetail/createJobOfferPage';
@@ -34,7 +34,7 @@ export default function Home() {
         (
             <Switch>
                 <Route path="/" exact>
-                    <JobsListPage></JobsListPage>
+                    <JobListPage></JobListPage>
                 </Route>
                 <Route path="/jobdetail/:id">
                     <JobDetailPage></JobDetailPage>
