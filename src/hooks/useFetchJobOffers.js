@@ -1,21 +1,22 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { jobListLoaded, jobListLoadingError } from '../redux/job/jobListActions';
-import { loginRequired } from '../redux/account/loginActions';
+import { jobListLoaded, jobListLoadingError, jobListLoading } from '../redux/job/jobListActions';
 import { getJobOffersCreatedByRecruiter, getJobOffers } from '../repositories/jobOfferRepository';
 
 export default function useFetchJobOffers(isRecruiter) {
 
     const dispatch = useDispatch();
-    let jobs = useSelector(state => state.JobListState.jobListObjects);
-    const jobOffersLoadingError = useSelector(state => state.JobListState.jobListLoadingError);
+    const isJobListLoaded = useSelector(state => state.JobListState.jobListLoaded);
+    const requiresRefreshingJobList = useSelector(state => state.JobListState.requiresRefreshingJobList);
     const token = sessionStorage.getItem("token");
 
     useEffect(() => {
 
-        const fetchJobs = async () => {
+        const fetchJobs = async () => {            
 
-            if ((jobs.length === 0)) {
+            if (!isJobListLoaded || requiresRefreshingJobList ) {
+
+                dispatch(jobListLoading);
 
                 let data;
 
@@ -34,7 +35,6 @@ export default function useFetchJobOffers(isRecruiter) {
                 }
                 else {
                     dispatch(jobListLoadingError);
-                    dispatch(loginRequired);
                 }
 
             }
@@ -42,5 +42,5 @@ export default function useFetchJobOffers(isRecruiter) {
 
         fetchJobs();
 
-    }, [dispatch, jobOffersLoadingError, jobs, token, isRecruiter])
+    }, [dispatch, isJobListLoaded, token, requiresRefreshingJobList, isRecruiter])
 }
