@@ -20,7 +20,7 @@ export default function CreateJobOfferPage() {
             </Row>
             <Row>
                 <Col lg="10">
-                    <EditCreateJobDetail SkillsAvailable={skillsAvailable}></EditCreateJobDetail>
+                    <EditCreateJobDetail skillsAvailable={skillsAvailable}></EditCreateJobDetail>
                 </Col>
             </Row>
         </Container>
