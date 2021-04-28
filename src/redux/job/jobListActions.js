@@ -54,17 +54,3 @@ export function jobListLoaded (jobs){
         payload :jobs
     }
 }
-
-export function jobSelected(jobId){
-    return {
-        type: 'JOB_SELECTED',
-        payload: jobId
-    }
-}
-
-export function editingJobOffer(jobOfferId) {
-    return {
-        type: 'EDITING_JOB_OFFER',
-        payload: jobOfferId
-    }
-}

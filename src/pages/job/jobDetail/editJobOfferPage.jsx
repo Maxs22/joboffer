@@ -12,11 +12,7 @@ export default function EditJobOfferPage() {
 
     useFetchJobOffers(true);
 
-    let selectedJobOfferToEdit = useSelector(state => state.JobListState.editingJobOfferId);
-
-    if (!selectedJobOfferToEdit) {
-        selectedJobOfferToEdit = param.id;
-    }
+    const selectedJobOfferToEdit = param.id;
 
     const jobs = useSelector(state => state.JobListState.jobListObjects);
 
@@ -24,7 +20,7 @@ export default function EditJobOfferPage() {
 
     const skillsAvailable = useFetchSkills();
 
-    const content = jobs.length === 0 ? <label>Cargando aviso</label> : <EditCreateJobOffer JobOffer={jobToEdit.jobOffer} SkillsAvailable={skillsAvailable}></EditCreateJobOffer>
+    const content = jobs.length === 0 ? <label>Cargando aviso</label> : <EditCreateJobOffer jobOffer={jobToEdit.jobOffer} skillsAvailable={skillsAvailable}></EditCreateJobOffer>
 
     return (
         <Container>

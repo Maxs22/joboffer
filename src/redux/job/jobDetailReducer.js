@@ -50,7 +50,6 @@ export function JobDetailReducer(state = initialState, action) {
         case 'JOB_OFFER_SUCCESSFULLY_PUBLISHED': return {
             ...state,
             publishingJobOfferId: '',
-            editingJobOfferId: '',
             jobOfferSuccessfullyPublished: true
         };
         case 'FAILURE_PUBLISHING_JOB_OFFER': return {
@@ -64,7 +63,6 @@ export function JobDetailReducer(state = initialState, action) {
         case 'JOB_OFFER_SUCCESSFULLY_DELETED': return {
             ...state,
             deletingJobOfferId: '',
-            editingJobOfferId: '',
             jobOfferSuccessfullyDeleted: true
         };
         case 'FAILURE_DELETING_JOB_OFFER': return {

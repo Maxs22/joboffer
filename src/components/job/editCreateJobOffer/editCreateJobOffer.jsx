@@ -10,11 +10,12 @@ import '../../../../node_modules/rc-datepicker/lib/style.css'
 
 export default function EditCreateJobDetail(props) {
 
+
     const { register, handleSubmit, control, watch } = useForm();
 
-    const languageLevel = watch("languageLevelControl", props.JobOffer?.languageLevel);
-    const isLanguageMandatory = watch("isLanguageMandatoryControl", props.JobOffer?.isLanguageMandatory);
-    const publicationDate = props.JobOffer? props.JobOffer.date : new Date();
+    const languageLevel = watch("languageLevelControl", props.jobOffer?.languageLevel);
+    const isLanguageMandatory = watch("isLanguageMandatoryControl", props.jobOffer?.isLanguageMandatory);
+    const publicationDate = props.jobOffer ? props.jobOffer.date : new Date();
 
     const requiredSkills = props.JobOffer?.skillsRequired.map(s => s.skill.name);
 
@@ -37,9 +38,9 @@ export default function EditCreateJobDetail(props) {
             <Form onSubmit={handleSubmit(onSubmit)}>
                 <Form.Group >
                     <h5>Título</h5>
-                    <Form.Control type="text" name="title" ref={register} defaultValue={props.JobOffer?.title} />
+                    <Form.Control type="text" name="title" ref={register} defaultValue={props.jobOffer?.title} />
                     <h5>Descripción</h5>
-                    <Form.Control as="textarea" name="description" rows="6" ref={register} defaultValue={props.JobOffer?.description} />
+                    <Form.Control as="textarea" name="description" rows="6" ref={register} defaultValue={props.jobOffer?.description} />
                     <h5>Fecha de Publicacion</h5>
                     <Col lg="2" style={{ paddingLeft: 0 }}>
                         <Controller as={DatePickerInput} name="date" control={control} defaultValue={publicationDate} className='my-custom-datepicker-component' />
@@ -49,10 +50,10 @@ export default function EditCreateJobDetail(props) {
                             <br />
                             <h5>Empresa empleadora</h5>
                             <Form.Label>Nombre</Form.Label><br />
-                            <Controller as={TextInput} name="companyName" autoComplete="off" options={["apple", "apricot", "banana", "carrot"]} trigger='' Component='input' control={control} className='form-control' defaultValue={props.JobOffer?.company.name} />
+                            <Controller as={TextInput} name="companyName" autoComplete="off" options={["apple", "apricot", "banana", "carrot"]} trigger='' Component='input' control={control} className='form-control' defaultValue={props.jobOffer?.company.name} />
                             <br />
                             <Form.Label>Rubro</Form.Label>
-                            <Form.Control type="text" disabled defaultValue={props.JobOffer?.company.activity} name="companyActivity" ref={register} />
+                            <Form.Control type="text" disabled defaultValue={props.jobOffer?.company.activity} name="companyActivity" ref={register} />
                             <br />
                         </Col>
                     </Card>
@@ -61,13 +62,13 @@ export default function EditCreateJobDetail(props) {
                             <br />
                             <h5>Información contractual</h5>
                             <Form.Label>Para iniciar en</Form.Label><br />
-                            <Form.Control type="text" ref={register} name="startingFrom" defaultValue={props.JobOffer?.contractInformation.startingFrom} />
+                            <Form.Control type="text" ref={register} name="startingFrom" defaultValue={props.jobOffer?.contractInformation.startingFrom} />
                             <Form.Label>Días laborales</Form.Label>
-                            <Form.Control type="text" ref={register} name="workingDays" defaultValue={props.JobOffer?.contractInformation.workingDays} />
+                            <Form.Control type="text" ref={register} name="workingDays" defaultValue={props.jobOffer?.contractInformation.workingDays} />
                             <Form.Label>Tipo de contratación</Form.Label>
-                            <Form.Control type="text" ref={register} name="kindOfContract" defaultValue={props.JobOffer?.contractInformation.kindOfContract} />
+                            <Form.Control type="text" ref={register} name="kindOfContract" defaultValue={props.jobOffer?.contractInformation.kindOfContract} />
                             <Form.Label>Zona de trabajo</Form.Label>
-                            <Form.Control type="text" ref={register} name="zone" defaultValue={props.JobOffer?.zone} />
+                            <Form.Control type="text" ref={register} name="zone" defaultValue={props.jobOffer?.zone} />
                             <br />
                         </Col>
                     </Card>
@@ -92,7 +93,7 @@ export default function EditCreateJobDetail(props) {
                             <br />
                             <Form.Group controlId="language">
                                 <h5>Idioma</h5>
-                                <Form.Control type="text" ref={register} name="language" defaultValue={props.JobOffer?.language} />
+                                <Form.Control type="text" ref={register} name="language" defaultValue={props.jobOffer?.language} />
                                 <br />
                                 <Form.Check type="checkbox" label="Requerido" ref={register} name="isLanguageMandatoryControl" defaultChecked={isLanguageMandatory} />
                                 <br />

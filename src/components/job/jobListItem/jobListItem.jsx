@@ -1,7 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Container, Card, Badge } from 'react-bootstrap';
-import { jobSelected, editingJobOffer } from '../../../redux/job/jobListActions';
 import { jobDetailLoaded } from '../../../redux/job/jobDetailActions';
 import Moment from 'moment';
 import 'moment/locale/es';
@@ -15,18 +14,14 @@ export default function JobListItem(props) {
     const history = useHistory();
 
     const setJobIdSelected = (event) => {
-
-        dispatch(jobSelected(props.jobOffer.id));
-        dispatch(jobDetailLoaded(props.jobOffer))
-
+        
         history.push('jobdetail/' + props.jobOffer.id);
+        dispatch(jobDetailLoaded(props.jobOffer))
 
         event.preventDefault();
     }
 
     const setEditingJobOffer = (event) => {
-
-        dispatch(editingJobOffer(props.jobOffer.id));
 
         history.push('/recruiter/edit/joboffer/' + props.jobOffer.id);
 

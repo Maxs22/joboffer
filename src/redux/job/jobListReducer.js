@@ -6,8 +6,6 @@ const initialState = {
     jobListLoaded: false,
     jobListObjects: [],
     jobListLoadingError: false,
-    jobdIdSelected: '',
-    jobIdEditing: '',
     requiresRefreshingJobList: false,
 }
 
@@ -44,8 +42,7 @@ export function JobListReducer(state = initialState, action) {
 
         case 'JOB_LIST_LOADING': return {
             ...state,
-            jobListLoading: true,
-            jobdIdSelected: ''
+            jobListLoading: true
         }
 
         case 'JOB_LIST_LOADED': return {
@@ -65,16 +62,6 @@ export function JobListReducer(state = initialState, action) {
             jobListLoadingError: true,
             requiresRefreshingJobList: false
         }
-
-        case 'JOB_SELECTED': return {
-            ...state,
-            jobdIdSelected: action.payload
-        }
-
-        case 'EDITING_JOB_OFFER': return {
-            ...state,
-            editingJobOfferId: action.payload
-        };
 
         case 'REFRESH_JOB_LIST': return {
             ...state,
