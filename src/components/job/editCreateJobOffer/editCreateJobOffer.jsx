@@ -3,6 +3,9 @@ import { Container, Col, Form, Button, Card } from 'react-bootstrap';
 import { DatePickerInput } from 'rc-datepicker';
 import TextInput from 'react-autocomplete-input';
 import { useForm, Controller } from "react-hook-form";
+import { useDispatch } from 'react-redux';
+import { openSkillsManager } from '../../../redux/skillManager/skillManagerActions';
+import SkillsManager from "../../skills/skillsManager";
 
 
 import '../../../../node_modules/react-autocomplete-input/dist/bundle.css';
@@ -10,6 +13,7 @@ import '../../../../node_modules/rc-datepicker/lib/style.css'
 
 export default function EditCreateJobDetail(props) {
 
+    const dispatch = useDispatch();
 
     const { register, handleSubmit, control, watch } = useForm();
 
@@ -17,21 +21,25 @@ export default function EditCreateJobDetail(props) {
     const isLanguageMandatory = watch("isLanguageMandatoryControl", props.jobOffer?.isLanguageMandatory);
     const publicationDate = props.jobOffer ? props.jobOffer.date : new Date();
 
-    const requiredSkills = props.JobOffer?.skillsRequired.map(s => s.skill.name);
+    const requiredSkills = props.jobOffer?.skillsRequired;
 
     const onSubmit = data => console.log(data);
 
-    let skillsToShow = requiredSkills?.join(', ');
+    let skillsToShow = requiredSkills?.map(s => s.skill.name).join(', ');
+
+    const onSkillManagerButtonClick = (event) => {
+        dispatch(openSkillsManager);
+    }
 
     const languageLevenControls = isLanguageMandatory ? <div>
-        <Form.Check inline label="Basico" type='radio' id='basic' name="languageLevelControl" ref={register} value={1} defaultChecked={ languageLevel === 1} />
-        <Form.Check inline label="Intermedio" type='radio' id='medium' name="languageLevelControl" ref={register} value={2} defaultChecked={languageLevel === 2}/>
-        <Form.Check inline label="Avanzado" type='radio' id='advance' name="languageLevelControl" ref={register} value={3} defaultChecked={languageLevel === 3}/>
+        <Form.Check inline label="Basico" type='radio' id='basic' name="languageLevelControl" ref={register} value={1} defaultChecked={languageLevel === 1} />
+        <Form.Check inline label="Intermedio" type='radio' id='medium' name="languageLevelControl" ref={register} value={2} defaultChecked={languageLevel === 2} />
+        <Form.Check inline label="Avanzado" type='radio' id='advance' name="languageLevelControl" ref={register} value={3} defaultChecked={languageLevel === 3} />
     </div> : <div>
-            <Form.Check inline label="Basico" type='radio' id='basic' disabled />
-            <Form.Check inline label="Intermedio" type='radio' id='medium' disabled />
-            <Form.Check inline label="Avanzado" type='radio' id='advance' disabled />
-        </div>
+        <Form.Check inline label="Basico" type='radio' id='basic' disabled />
+        <Form.Check inline label="Intermedio" type='radio' id='medium' disabled />
+        <Form.Check inline label="Avanzado" type='radio' id='advance' disabled />
+    </div>
 
     return (
         <Container style={{ textAlign: "left" }}>
@@ -78,12 +86,11 @@ export default function EditCreateJobDetail(props) {
                             <br />
                             <Form.Group controlId="skills">
                                 <h5>Conocimientos</h5>
-                                <Controller as={TextInput} control={control} matchAny={true} name="skills" autoComplete="off" options={props.skillsAvailable.map(s => s.name)} trigger='' Component='input' className='form-control' spacer=',' defaultValue={skillsToShow}/><br />
-                                <Button variant="warning" type="submit">
-                                    Añadir tiempo mínimo requerido
+                                <Controller as={TextInput} control={control} matchAny={true} name="skills" autoComplete="off" options={props.skillsAvailable.map(s => s.name)} trigger='' Component='input' className='form-control' spacer=',' defaultValue={skillsToShow} /><br />
+                                <Button variant="warning" onClick={onSkillManagerButtonClick}>
+                                    Añadir más información
                                 </Button>
-                                <Button variant="link">Ver ejemplos</Button>
-                                <br />
+                                <SkillsManager skillsToShow = {requiredSkills}></SkillsManager>
                             </Form.Group>
                         </Col>
                     </Card>
@@ -102,7 +109,8 @@ export default function EditCreateJobDetail(props) {
                         </Col>
                     </Card>
                 </Form.Group>
-                <Button variant="primary" type="submit">Guardar</Button><br/>
+                <Button variant="primary" type="submit">Guardar</Button>
+                <br />
                 <br />
             </Form>
         </Container>

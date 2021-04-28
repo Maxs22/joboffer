@@ -1,11 +1,60 @@
 import React from 'react';
-import { Container, Row, Col, Table } from 'react-bootstrap';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { Button, Modal, Table } from 'react-bootstrap';
+import { closeSkillsManager } from '../../redux/skillManager/skillManagerActions';
 
-export default function SkillsManager(props){
+export default function SkillsManager(props) {
 
-    return(
-        <div>hola</div>
-    );
+  const dispatch = useDispatch();
 
+  const showSkillManager = useSelector(state => state.SkillManagerState.showSkillsManager);
+
+  const tbody = props.skillsToShow.map(item => (
+    <tr>
+      <td>
+        <label>{item.skill.name}</label>
+      </td>
+      <td>
+        <input type="text"></input>
+      </td>
+      <td>
+        <input type="option"></input>
+      </td>
+    </tr>
+  ));
+
+  const skillManagerModal = showSkillManager && (
+
+    <Modal show={showSkillManager} onHide={() => dispatch(closeSkillsManager)}>
+      <Modal.Header closeButton>
+        <Modal.Title>Agregar tiempo de experiencia</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <Table striped bordered hover size="sm">
+          <thead>
+            <tr>
+              <th>
+                Habilidad
+              </th>
+              <th>
+                Es mandatorio?
+              </th>
+              <th>
+                Años requeridos
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {tbody}
+          </tbody>
+        </Table>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={() => dispatch(closeSkillsManager)}>Descartar</Button>
+        <Button variant="primary">Aceptar</Button>
+      </Modal.Footer>
+    </Modal>
+  )
+
+  return skillManagerModal;
 }

@@ -1,5 +1,5 @@
 const initialState = {
-    openSkillsManager: false,
+    showSkillsManager: false,
     skillsToManage: [],
     skills: []
 }
@@ -9,11 +9,11 @@ export function SkillManagerReducer(state = initialState, action) {
     switch (action.type) {
         case 'OPEN_SKILLS_MANAGER': return {
             ...state,
-            openSkillsManager: true
+            showSkillsManager: true
         };
         case 'CLOSE_SKILLS_MANAGER': return {
             ...state,
-            openSkillsManager: false
+            showSkillsManager: false
         }
         case 'SET_SKILLS_TO_MANAGE': return {
             ...state,
