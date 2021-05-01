@@ -10,15 +10,15 @@ export default function SkillsManager(props) {
   const showSkillManager = useSelector(state => state.SkillManagerState.showSkillsManager);
 
   const tbody = props.skillsToShow.map(item => (
-    <tr>
+    <tr key={item.id}>
       <td>
-        <label>{item.skill.name}</label>
+        <label>{item.name}</label>
+      </td>
+      <td>
+        <input type="checkbox"></input>
       </td>
       <td>
         <input type="text"></input>
-      </td>
-      <td>
-        <input type="option"></input>
       </td>
     </tr>
   ));

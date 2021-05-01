@@ -21,11 +21,11 @@ export default function EditCreateJobDetail(props) {
     const isLanguageMandatory = watch("isLanguageMandatoryControl", props.jobOffer?.isLanguageMandatory);
     const publicationDate = props.jobOffer ? props.jobOffer.date : new Date();
 
-    const requiredSkills = props.jobOffer?.skillsRequired;
-
     const onSubmit = data => console.log(data);
 
-    let skillsToShow = requiredSkills?.map(s => s.skill.name).join(', ');
+    const skillsRequired = props.skillsAvailable.filter(item => props.jobOffer?.skillsRequired.map(rs => rs.skillId).includes(item.id));
+
+    let skillsToShow = skillsRequired.map(item=> item.name).join(', ');
 
     const onSkillManagerButtonClick = (event) => {
         dispatch(openSkillsManager);
@@ -90,7 +90,7 @@ export default function EditCreateJobDetail(props) {
                                 <Button variant="warning" onClick={onSkillManagerButtonClick}>
                                     Añadir más información
                                 </Button>
-                                <SkillsManager skillsToShow = {requiredSkills}></SkillsManager>
+                                <SkillsManager skillsToShow = {skillsRequired}></SkillsManager>
                             </Form.Group>
                         </Col>
                     </Card>

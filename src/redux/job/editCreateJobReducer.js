@@ -1,22 +1,21 @@
 const initialState = {
     title: '',
     description: '',
-    companyActivity: '',
-    companyName: '',
+    company: {
+        name: '',
+        activity: ''
+    },
     date: '',
     isLanguageMandatoryControl: false,
-    kindOfContract: '',
     language: '',
     languageLevelControl: 0,
-    skills: '',
-    startingFrom: '',
-    workingDays: '',
-    zone: ''
-
-}
-
-function getSkillsRequired(skills){
-    
+    skillsRequired: [],
+    zone: '',
+    contractInformation: {
+        startingFrom: '',
+        workingDays: '',
+        kindOfContract: '',
+    }
 }
 
 export function EditCreateJobReducer(state = initialState, action) {
@@ -43,10 +42,6 @@ export function EditCreateJobReducer(state = initialState, action) {
                 workingDays: action.payload.workingDays,
                 kindOfContract: action.payload.kindOfContract,
             }
-            
-            
-            
-            
         }
         default: return state;
     }

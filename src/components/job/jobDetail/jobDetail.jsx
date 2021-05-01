@@ -44,8 +44,8 @@ export default function JobDetail() {
             </thead>
             <tbody>
                 {jobToDisplay.skillsRequired.map(item => (
-                    <tr key={item.skill.name}>
-                        <td>{item.skill.name}</td>
+                    <tr key={item.skillId}>
+                        <td>{item.skillId}</td>
                         <td>{item.years}</td>
                         <td>{item.isMandatory ? "Si" : "No"}</td>
                     </tr>
